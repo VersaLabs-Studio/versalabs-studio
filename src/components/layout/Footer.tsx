@@ -1,33 +1,48 @@
-import { Github, Linkedin, Mail } from 'lucide-react';
+'use client';
+
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border py-12">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="flex flex-col items-center gap-6 md:flex-row md:justify-between">
-          <div>
-            <p className="text-sm text-muted-foreground">
-              Built by <span className="text-foreground font-medium">Kidus Abdula</span> | VersaLabs Systems Lab
-            </p>
-            <p className="mt-1 text-xs text-muted-foreground">
-              Next.js 16 | TypeScript | DDD | Production-Grade Architecture
+    <motion.footer
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ stiffness: 300, damping: 30 }}
+      className="border-t border-white/[0.06] bg-[#0D0D0F]"
+    >
+      <div className="mx-auto max-w-6xl px-6 py-12">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex flex-col items-center md:items-start gap-3">
+            <img 
+              src="/versalabs-logo-light.png" 
+              alt="VersaLabs" 
+              className="h-6 w-auto"
+            />
+            <p className="text-sm text-zinc-500">
+              Enterprise-grade systems for global operational leaders.
             </p>
           </div>
 
-          <div className="flex items-center gap-4">
-            <Link href="https://github.com/kidusabdula" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-              <Github className="h-5 w-5" />
-            </Link>
-            <Link href="https://linkedin.com/in/kidusabdula" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-              <Linkedin className="h-5 w-5" />
-            </Link>
-            <a href="mailto:kidus@example.com" className="text-muted-foreground hover:text-foreground transition-colors">
-              <Mail className="h-5 w-5" />
-            </a>
+          <div className="flex flex-col items-center md:items-end gap-2">
+            <div className="flex items-center gap-6">
+              <Link href="/studio" className="text-sm text-zinc-500 hover:text-white transition-colors">
+                Studio
+              </Link>
+              <Link href="/about" className="text-sm text-zinc-500 hover:text-white transition-colors">
+                Intelligence
+              </Link>
+              <Link href="/contact" className="text-sm text-zinc-500 hover:text-white transition-colors">
+                Contact
+              </Link>
+            </div>
+            <p className="text-sm text-zinc-600">
+              &copy; 2026 VersaLabs Studio. All rights reserved.
+            </p>
           </div>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 }

@@ -29,7 +29,39 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Deployment
+
+### Prerequisites
+- Vercel account
+- Domain: versalabs.dev
+- Resend account for email
+
+### Environment Variables
+Create `.env.local` with:
+```
+NEXT_PUBLIC_GA_ID=your_google_analytics_id
+RESEND_API_KEY=your_resend_api_key
+```
+
+### Vercel Deployment
+1. Connect GitHub repository to Vercel
+2. Configure domain: versalabs.dev
+3. Add environment variables in Vercel dashboard
+4. Configure Resend domain verification for versalabs.dev
+5. Deploy automatically on push to main branch
+
+### Production Checklist
+- [ ] Static generation enabled for project pages
+- [ ] Images optimized with Next.js Image component
+- [ ] SEO meta tags and structured data added
+- [ ] Google Analytics integrated
+- [ ] Sitemap.xml generated
+- [ ] Error boundaries implemented
+- [ ] Loading states added
+- [ ] Cross-browser tested
+- [ ] Mobile responsive validated
+- [ ] Accessibility audited (WCAG AA)
+- [ ] Lighthouse score >95
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
