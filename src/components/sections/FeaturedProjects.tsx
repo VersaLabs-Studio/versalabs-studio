@@ -1,87 +1,137 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowUpRight, Activity } from 'lucide-react';
-import { StaggerContainer, StaggerItem, GlassCard } from '@/components/ui/motion';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
+import { FadeIn, StaggerContainer, StaggerItem, GlassCard } from '@/components/ui/motion';
 import type { ProjectData } from '@/lib/catalog-parser';
 
 interface FeaturedProjectsProps {
-  projects: ProjectData[];
+  // Keeping interface intact to prevent bleeding prop errors in page.tsx
+  projects?: ProjectData[];
 }
 
+const SHOWCASE_CONFIG = [
+  { 
+    slug: 'obsidian-erp-v3.0',
+    title: 'Obsidian ERP',
+    img: '/obsidian-erp-2 (2).png', 
+    invert: false,
+    description: 'An enterprise-grade, global market ERP architected for limitless scale. Transforms lead-to-cash pipelines, real-time manufacturing execution, and double-entry financial control into a unified digital workflow.',
+    capabilities: ['Lead-to-Cash Automation', 'Manufacturing Execution', 'Double-Entry Bookkeeping', 'Multi-Tenant Architecture'],
+  },
+  { 
+    slug: 'threatmatrix-ai',
+    title: 'ThreatMatrix AI',
+    img: '/threatmatrix-ai-1.png', 
+    invert: true,
+    description: 'Enterprise-grade anomaly detection and cyber threat intelligence platform. Purpose-built for national-scale security operations with real-time packet capture, automated intelligence enrichment, and conversational AI analysts.',
+    capabilities: ['Live Network Sniffing', 'Isolation Forest ML Detection', 'OpenRouter LLM Intelligence', 'Real-time WebSocket Command Center']
+  },
+  { 
+    slug: 'auroqueue',
+    title: 'AuroQueue QMS',
+    img: '/auroqueue-1.png', 
+    invert: false,
+    description: 'Enterprise Queue Management System designed for hospital networks and global banks. Delivers live queue orchestration across multi-tenant self-service kiosks paired with advanced performance analytics.',
+    capabilities: ['Real-time Orchestration', 'Multi-Department Dashboards', 'Hardware Self-Service Kiosks', 'High-Availability Scaling']
+  }
+];
+
 export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
-  // Show first 4 most prominent projects for home page
-  const displayProjects = projects.slice(0, 4);
-
   return (
-    <section className="px-6 py-32 bg-[#0A0A0C]">
-      <div className="mx-auto max-w-6xl">
-        <StaggerContainer className="mb-16">
-          <StaggerItem>
-            <h2 className="text-3xl font-bold tracking-tight text-white">Featured Architectures</h2>
-          </StaggerItem>
-          <StaggerItem>
-            <p className="mt-3 text-[15px] text-zinc-500 max-w-2xl">
-              Production-grade systems built for enterprise-scale operations. Hover to inspect internal flows and technology clusters.
+    <section className="px-6 py-32 bg-[#0A0A0C] border-t border-white/[0.04]">
+      <div className="mx-auto max-w-[1400px]">
+        <div className="mb-24 md:text-center max-w-3xl md:mx-auto">
+          <FadeIn>
+            <h2 className="text-[40px] md:text-[56px] leading-[1.05] font-semibold tracking-tighter text-white mb-6">
+              Featured Products.
+            </h2>
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <p className="text-[17px] text-zinc-500">
+              Proprietary SaaS platforms deployed worldwide functioning as resilient, limitless digital infrastructure.
             </p>
-          </StaggerItem>
-        </StaggerContainer>
+          </FadeIn>
+        </div>
 
-        <StaggerContainer staggerDelay={0.1}>
-          <div className="grid gap-6 md:grid-cols-2">
-            {displayProjects.map((project) => (
+        <StaggerContainer staggerDelay={0.15} className="flex flex-col gap-24 md:gap-40">
+          {SHOWCASE_CONFIG.map((project) => {
+            const isTextRight = !project.invert;
+
+            return (
               <StaggerItem key={project.slug}>
-                <Link href={`/projects/${project.slug}`} className="group block h-full">
-                  <div className="relative h-full rounded-2xl bg-gradient-to-br from-white/[0.04] to-transparent p-[1px] transition-colors duration-500 hover:from-white/[0.08]">
-                    <div className="relative h-full flex flex-col rounded-[15px] bg-[#101012] p-8 overflow-hidden">
-                      {/* Background Ambient Glow on Hover */}
-                      <div className="absolute -top-32 -right-32 h-64 w-64 rounded-full bg-white/[0.02] blur-3xl transition-opacity duration-500 opacity-0 group-hover:opacity-100" />
-                      
-                      {/* Top bar: Tags / Link */}
-                      <div className="flex items-start justify-between relative z-10 mb-8">
-                        <div className="flex flex-wrap gap-2">
-                          {project.tags.slice(0, 2).map(tag => (
-                            <span key={tag} className="px-2 py-1 text-[11px] font-medium tracking-wider uppercase text-zinc-400 bg-white/[0.03] border border-white/[0.05] rounded-md">
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/[0.03] border border-white/[0.05] text-zinc-500 transition-all duration-300 group-hover:bg-white group-hover:text-black">
-                          <ArrowUpRight className="h-4 w-4" />
-                        </div>
-                      </div>
+                <div className={`flex flex-col gap-10 md:gap-16 ${isTextRight ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center`}>
+                  
+                  {/* Cinematic Massive Image Pane (65% Width) */}
+                  <div className="w-full lg:w-[65%] relative group">
+                    <Link href={`/projects/${project.slug}`} className="block relative">
+                      <motion.div 
+                        whileHover={{ scale: 1.02, y: -4 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                        className="relative w-full overflow-hidden shadow-[0_0_80px_rgba(255,255,255,0.03)]"
+                      >
+                        <Image 
+                          src={project.img} 
+                          alt={project.title}
+                          width={1400}
+                          height={900}
+                          className="w-full h-auto rounded-xl border border-white/[0.04]"
+                          sizes="(max-width: 1024px) 100vw, 65vw"
+                          priority
+                        />
+                      </motion.div>
+                    </Link>
+                  </div>
 
-                      {/* Content */}
-                      <div className="relative z-10 flex-grow">
-                        <h3 className="text-xl font-semibold text-white mb-3">{project.title}</h3>
-                        <p className="text-[14px] leading-relaxed text-zinc-500 line-clamp-3 mb-8">
-                          {project.description}
-                        </p>
-                      </div>
+                  {/* Dense Context Pane (35% Width) */}
+                  <div className="w-full lg:w-[35%] flex flex-col justify-center">
+                    
+                    <h3 className="text-3xl md:text-[42px] font-semibold tracking-tighter text-white mb-6">
+                      {project.title}
+                    </h3>
+                    
+                    <p className="text-[16px] leading-[1.7] text-zinc-400 mb-8 max-w-xl">
+                      {project.description}
+                    </p>
 
-                      {/* System Flow Footer */}
-                      <div className="relative z-10 mt-auto pt-6 border-t border-white/[0.04] flex items-center gap-3">
-                        <Activity className="h-4 w-4 text-zinc-600" />
-                        <span className="text-[12px] font-medium text-zinc-400 truncate">
-                          {project.systemFlow}
-                        </span>
-                      </div>
+                    <div className="flex flex-col gap-3 mb-12">
+                      {project.capabilities.map((cap) => (
+                         <div key={cap} className="flex items-center gap-3 text-[13px] text-zinc-300 font-medium">
+                           <div className="w-1.5 h-1.5 rounded-full bg-white/40" />
+                           {cap}
+                         </div>
+                      ))}
+                    </div>
+
+                    <div>
+                      <Link href={`/projects/${project.slug}`}>
+                        <motion.button 
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          className="inline-flex items-center justify-center px-6 py-3.5 text-[13px] font-semibold tracking-wide text-black bg-white rounded-full transition-colors hover:bg-zinc-200 group"
+                        >
+                          Explore Details
+                          <ArrowUpRight className="ml-2 h-4 w-4" />
+                        </motion.button>
+                      </Link>
                     </div>
                   </div>
-                </Link>
+
+                </div>
               </StaggerItem>
-            ))}
-          </div>
+            );
+          })}
         </StaggerContainer>
 
-        <div className="mt-16 text-center">
-          <Link href="/projects" className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-white transition-all duration-300 bg-white/[0.03] border border-white/[0.08] rounded-full hover:bg-white hover:text-black">
-            View Project Catalog
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="ml-2">
-              <path d="M5 12h14m-7-7 7 7-7 7" />
-            </svg>
+        <div className="mt-40 text-center pt-16 border-t border-white/[0.04]">
+          <Link href="/projects" className="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors">
+            View the Full Enterprise Catalog
+            <ArrowUpRight className="h-4 w-4" />
           </Link>
         </div>
+
       </div>
     </section>
   );

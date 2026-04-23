@@ -45,9 +45,9 @@ export default function CoreCapabilities() {
               </div>
 
               <div className="mt-auto p-8 pt-6 bg-gradient-to-t from-[#101012] to-transparent border-t border-white/[0.02]">
-                <h3 className="text-sm font-semibold text-white mb-2">Domain-Driven Design</h3>
+                <h3 className="text-sm font-semibold text-white mb-2">Domain-Driven Architecture</h3>
                 <p className="text-[13px] leading-relaxed text-zinc-500">
-                  Every application is strictly modeled into autonomous bounded contexts.
+                  Every application is deliberately structured into focused, operational boundaries built for business clarity.
                 </p>
               </div>
             </div>
@@ -93,9 +93,9 @@ export default function CoreCapabilities() {
               </div>
 
               <div className="mt-auto p-8 pt-6 bg-gradient-to-t from-[#101012] to-transparent border-t border-white/[0.02]">
-                <h3 className="text-sm font-semibold text-white mb-2">Powered by AI agents</h3>
+                <h3 className="text-sm font-semibold text-white mb-2">Powered by AI Workflows</h3>
                 <p className="text-[13px] leading-relaxed text-zinc-500">
-                  Native Model Context Protocol (MCP) and multi-model inference chains.
+                  Harnessing the latest in predictive analytics and agentic workflows to drastically multiply engineering velocity and iteration.
                 </p>
               </div>
             </div>
@@ -131,9 +131,9 @@ export default function CoreCapabilities() {
               </div>
 
               <div className="mt-auto p-8 pt-6 bg-gradient-to-t from-[#101012] to-transparent border-t border-white/[0.02]">
-                <h3 className="text-sm font-semibold text-white mb-2">Zero-bloat infrastructure</h3>
+                <h3 className="text-sm font-semibold text-white mb-2">Zero-bloat execution</h3>
                 <p className="text-[13px] leading-relaxed text-zinc-500">
-                  Strict Schema-first architectures powered by Next.js and Frappe ERP backends.
+                  Highly optimized, stack-agnostic architectures explicitly designed to scale effortlessly without legacy overhead.
                 </p>
               </div>
             </div>

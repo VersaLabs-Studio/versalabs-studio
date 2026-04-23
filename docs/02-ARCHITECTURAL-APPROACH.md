@@ -12,28 +12,26 @@ We eliminate type drift between frontend and backend.
 - **Types Extraction:** Rely on Frappe `DocTypes` or Postgres `SQL` as the absolute source of truth.
 - **Zod & TypeScript:** Enforce runtime validation via Zod and strict compilation checks in TS natively across all projects.
 
-### Zero-Bloat Architecture
-- Avoid massive UI libraries if a targeted primitive (like Radix UI) handles the accessibility just fine.
-- Prioritize **Tailwind CSS v4** for ultra-efficient utility-based rendering.
-- No phantom state management. We default to `Zustand` for complex client stores and `TanStack Query` for robust server-state execution.
+### Zero-Bloat Agnosticism
+- Avoid massive legacy frameworks and heavy middleware unless fundamentally necessary for operational performance.
+- Prioritize scalable cloud integrations and utility-driven architectures that minimize maintenance drag.
+- Decentralize state management ensuring the frontend and backend remain strictly separated.
 
-## 2. Default Stack Configuration
+## 2. Default Configuration Philosophy
 
-### Frontend (User & Control Planes)
-- **Framework:** Next.js 16 (App Router paradigm)
-- **Language:** TypeScript 5+ (Strict Mode)
-- **UI:** Radix Primitives + Custom Tailwind v4 styling
-- **Animations:** Framer Motion (only use `spring` physics for premium interactions)
+### The Interface Layer
+- **Framework:** Best-in-class modern component rendering (e.g., App Router paradigms).
+- **Core Tenet:** Type-safety enforced globally from database strictly through the UI boundary.
+- **Micro-Interactions:** Physics-based spring animations exclusively utilizing the GPU for smooth, native application feel.
 
-### Backend (The Intelligence Layer)
-- **Monolithic / Distributed Core:** Python (Frappe/FastAPI) or Node (Hapi.js/Next.js Route Handlers)
-- **Database:** PostgreSQL (with heavily utilized JSONB and RLS capabilities)
-- **State/PubSub:** Redis (for real-time capabilities and aggressive query caching)
-- **Hosting:** Vercel Edge (Frontend) + Self-Hosted Ubuntu VPS via Docker Compose (Backend/Infra)
+### The Intelligence Layer
+- **Architecture:** Monolithic cores iteratively extracted into micro-services as operational load demands.
+- **Information Storage:** Relational database backends utilizing JSONB for flexible sub-schema logic.
+- **Deployments:** Decoupled containerized distribution pushed continuously via automated pipelines.
 
-## 3. AI-First Integration Rules
+## 3. AI Workflow Integration
 
-AI is treated as a structural domain collaborator, not an afterthought.
-- **Model Context Protocol (MCP):** Build APIs supporting autonomous tool calling naturally.
-- **Multi-Model Fallbacks:** Use OpenRouter to orchestrate Nemotron, GPT, and specialized MoE models concurrently. No infrastructure should lock into a single LLM vendor.
-- **Isolation Forests/Classification:** Standardize backend ML pipelines leveraging fast predictive models for operational heavy lifting where generative AI is too slow.
+AI is treated as an operational force multiplier.
+- **Agentic Iteration:** Utilize autonomous pipelines to aggressively scale testing and deployment speeds.
+- **Multi-Model Orchestration:** We rely on agnostic LLM integrations ensuring you are never held hostage by a single predictive intelligence vendor.
+- **Intelligent Operations:** Predictive algorithms and statistical models execute heavy lifting automatically behind standard user abstractions.

@@ -35,7 +35,15 @@ const SPRING = { stiffness: 300, damping: 30 };
 - **Buttons:** Scale down on tap (`whileTap={{ scale: 0.98 }}`), scale up slightly on hover (`whileHover={{ scale: 1.02 }}`). Ensure hover triggers an imperceptible background color shifts (e.g. from `white` to `rgba(255, 255, 255, 0.9)`).
 - **Cards (Group Hover):** Use `group` in Tailwind to scale icons or slightly shift borders when the parent card is hovered. Add subtle, inner glows.
 
-## 4. Banned Practices
+## 4. Component Architecture
+
+### The Asymmetric "Bento Box" Grid
+All heavy content sections must utilize varying width column spans to establish hierarchy and visual density. Standard homogenous grids are banned for macro layouts.
+- **Base Grid:** `grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6`.
+- **Hero/Anchor Panes:** Must consume large structural widths (`md:col-span-2`, `lg:col-span-3`).
+- **Feature Modals:** Must rely on `GlassCard` wrapper modules paired tightly with abstracted multi-layered geometric SVG backgrounds.
+
+## 5. Banned Practices
 - 🚫 **Generic UI Framework Output:** Do not use out-of-the-box Bootstrap, MUI, or unmodified Tailwind defaults without our strict color tokens.
 - 🚫 **Clown Colors:** Do not use heavily saturated primary colors (pure red, pure blue) unless specifically requested by an enterprise brand. Stick to controlled palettes.
 - 🚫 **Unanimated Layout Shifts:** All layout height shifts or list reorderings must use `layout` animate properties.

@@ -57,9 +57,9 @@ export default function EngineeringProcess() {
                 </div>
               </div>
               <div className="mt-auto p-10 pt-8 bg-gradient-to-t from-[#101012] to-transparent">
-                <h3 className="text-[17px] font-semibold text-white mb-3">System Discovery & Architecture</h3>
+                <h3 className="text-[17px] font-semibold text-white mb-3">Extensive Planning & Discovery</h3>
                 <p className="text-[14px] leading-relaxed text-zinc-500">
-                  We dive deep into your operational boundaries. We outline strict Schema-First architectures and map out agentic AI workflows. No generic blueprints.
+                  We dive deep into your operational boundaries establishing agile communication channels. We outline strict Schema-First architectures tailored specifically for your enterprise. No generic blueprints.
                 </p>
               </div>
             </div>
@@ -102,9 +102,9 @@ export default function EngineeringProcess() {
                 </div>
               </div>
               <div className="mt-auto p-10 pt-8 bg-gradient-to-t from-[#101012] to-transparent">
-                <h3 className="text-[17px] font-semibold text-white mb-3">Domain Modeling</h3>
+                <h3 className="text-[17px] font-semibold text-white mb-3">Rapid Domain Prototyping</h3>
                 <p className="text-[14px] leading-relaxed text-zinc-500">
-                  High-fidelity designs and rigid bounded contexts outlined in days. You will inspect and interact with the exact domain models before backend logic is initialized.
+                  High-fidelity designs and rigid bounded contexts outlined in days. Agile iterations allow you to test and validate exact domain models before heavy backend logic is initialized.
                 </p>
               </div>
             </div>
@@ -146,9 +146,9 @@ export default function EngineeringProcess() {
                 </div>
               </div>
               <div className="mt-auto p-10 pt-8 bg-gradient-to-t from-[#101012] to-transparent">
-                <h3 className="text-[17px] font-semibold text-white mb-3">Engineering & Deployment</h3>
+                <h3 className="text-[17px] font-semibold text-white mb-3">Agile Engineering</h3>
                 <p className="text-[14px] leading-relaxed text-zinc-500">
-                  Production-ready endpoints utilizing zero-bloat Next.js infrastructure and robust Frappe/PostgreSQL backends. Ship to real environments instantly.
+                  Production-ready endpoints deploying robust, stack-agnostic infrastructure. We ship mission-critical environments instantly, ensuring tight feedback loops and rapid delivery.
                 </p>
               </div>
             </div>
@@ -189,9 +189,9 @@ export default function EngineeringProcess() {
                 </div>
               </div>
               <div className="mt-auto p-10 pt-8 bg-gradient-to-t from-[#101012] to-transparent">
-                <h3 className="text-[17px] font-semibold text-white mb-3">Scale & Iterate</h3>
+                <h3 className="text-[17px] font-semibold text-white mb-3">Iterative Scale & Evolution</h3>
                 <p className="text-[14px] leading-relaxed text-zinc-500">
-                  Monitor telemetry, integrate multi-model MCP inferences, and aggressively iterate. Your infrastructure becomes faster and more resilient autonomously.
+                  Monitor telemetry, gather continuous user feedback, and aggressively iterate. Continuous agile delivery ensures your operational infrastructure becomes faster and more resilient.
                 </p>
               </div>
             </div>
