@@ -58,12 +58,12 @@ export default function ComingSoon() {
                     <ArrowRight className="w-4 h-4" />
                   </GlassButton>
                 </Link>
-                <Link href="https://github.com/versalabs" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+                {/* <Link href="https://github.com/versalabs-studio" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
                   <GlassButton className="w-full sm:w-auto flex items-center justify-center gap-2 py-3 px-6 text-sm font-semibold tracking-wide h-full">
                     <Terminal className="w-4 h-4" />
                     <span>View GitHub</span>
                   </GlassButton>
-                </Link>
+                </Link> */}
               </div>
             </GlassCard>
           </ScaleIn>
