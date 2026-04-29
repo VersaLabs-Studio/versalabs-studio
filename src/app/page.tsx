@@ -52,7 +52,7 @@ export default function ComingSoon() {
               </div>
               
               <div className="flex w-full md:w-auto flex-col sm:flex-row gap-4">
-                <Link href="mailto:hello@versalabs.com" className="w-full sm:w-auto">
+                <Link href="mailto:kidus489@gmail.com" className="w-full sm:w-auto">
                   <GlassButton variant="primary" className="w-full sm:w-auto flex items-center justify-center gap-2 py-3 px-6 text-sm font-semibold tracking-wide h-full">
                     <span>Contact Studio</span>
                     <ArrowRight className="w-4 h-4" />
