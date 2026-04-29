@@ -39,11 +39,9 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
         <MotionConfigProvider>
-          <Navbar />
           <AnimatePresence mode="wait">
-            <main className="flex-1">{children}</main>
+            <main className="flex-1 flex flex-col">{children}</main>
           </AnimatePresence>
-          <Footer />
         </MotionConfigProvider>
         {process.env.NEXT_PUBLIC_GA_ID && (
           <>
