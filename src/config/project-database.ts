@@ -62,6 +62,8 @@ export interface ProjectEntry {
   liveUrl?: string;
   githubUrl?: string;
   heroGradient: string; // CSS gradient classes for card accent
+  thumbnail?: string; // Specific image path for studio card display
+  imageDir?: string; // Override directory name in public/ for image discovery (e.g. 'Oskaz Import' for oskaz-ecommerce)
 
   // ── Detail page fields ──
   description: string; // Full 3-5 sentence project description
@@ -105,19 +107,20 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
     title: "ThreatMatrix AI",
     subtitle: "AI-Powered Cyber Threat Intelligence Platform",
     summary:
-      "Enterprise-grade network anomaly detection platform combining a three-model ML ensemble with LLM-driven threat narratives, deployed for national-scale security operations.",
+      "Your enterprise security command center. Real-time threat detection, intelligent alerts, and AI-driven analysis — protecting critical infrastructure at national scale.",
     category: "Cybersecurity",
-    tags: ["AI/ML", "Cybersecurity", "Real-Time", "DevOps"],
+    tags: ["AI/ML", "Cybersecurity", "Real-Time", "Enterprise"],
     year: "2026",
     status: "Production",
     liveUrl: "https://threatmatrix-ai.vercel.app",
-    githubUrl: "https://github.com/VersaLabs-Studio/threatmatrix-ai",
+    githubUrl: "https://github.com/VersaLabs-Studio",
     heroGradient: "from-red-500/20 via-transparent to-orange-500/10",
+    thumbnail: "/ThreatMatrix AI/Mockups/threatmatrix-ai-4.png",
 
     description:
-      "ThreatMatrix AI is a proprietary cyber-security platform that delivers real-time network anomaly detection, automated threat-intel enrichment, and a war-room style command-center UI modeled after national intelligence agency operation centres. Purpose-built for Ethiopia's Digital Transformation initiative, it provides a locally-hosted, cost-effective alternative to expensive global SIEM solutions targeting government agencies, financial institutions, and telecom operators.",
+      "ThreatMatrix AI is a proprietary cyber-security command center delivering real-time network threat detection and automated intelligence enrichment. Designed for government agencies, financial institutions, and telecom operators, it provides enterprise-grade protection with an immersive war-room interface that enables security teams to detect, investigate, and neutralize threats before they cause damage.",
     businessProblem:
-      "Rapid digitisation across Ethiopia has outpaced local security tooling, leaving critical government and financial infrastructure reliant on prohibitively expensive global SIEM solutions that lack local context and Amharic language support.",
+      "Rapid digitisation across emerging markets has outpaced local security tooling, leaving critical government and financial infrastructure reliant on prohibitively expensive global SIEM solutions that lack local context and language support.",
     architecturalSolution:
       "A three-tier, event-driven architecture separating Capture, Intelligence, and Interaction bounded contexts. Python/Scapy ingests live traffic, a FastAPI Intelligence Engine runs an ensemble of three ML models in parallel, and a Next.js Command Center renders real-time maps and dashboards via WebSocket. Redis Pub/Sub decouples all tiers for independent scaling.",
     systemFlow:
@@ -233,21 +236,23 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
   {
     slug: "obsidian-erp-v3.0",
     title: "Obsidian ERP v3.0",
-    subtitle: "Schema-First Manufacturing ERP System",
+    subtitle: "Enterprise Resource Planning — Built for Global Scale",
     summary:
-      "Enterprise resource planning system for manufacturing and printing industries, featuring auto-generated TypeScript types from Frappe DocTypes and a zero-boilerplate factory pattern reducing CRUD code by 75%.",
+      "The all-in-one business management platform. From customer onboarding to final invoice, Obsidian unifies your entire operation — CRM, sales, manufacturing, inventory, and accounting — in a single seamless system.",
     category: "ERP",
-    tags: ["ERP", "Manufacturing", "Schema-First", "Enterprise"],
+    tags: ["ERP", "Enterprise", "SaaS", "Global"],
     year: "2026",
     status: "Production",
+    githubUrl: "https://github.com/VersaLabs-Studio",
     heroGradient: "from-violet-500/20 via-transparent to-indigo-500/10",
+    thumbnail: "/Obsidian ERP/Mockups/New folder/obsidian-erp-2 (2).png",
 
     description:
-      "Obsidian v3.0 is a proprietary enterprise resource planning system developed by VersaLabs for the manufacturing and printing industry. It transforms traditional job shop operations into streamlined digital workflows through lead-to-cash automation, real-time manufacturing execution, double-entry bookkeeping, and multi-tenant architecture — all powered by a revolutionary schema-first development approach where Frappe DocTypes serve as the single source of truth for the entire type system.",
+      "Obsidian v3.0 is the ERP system that grows with your business. Designed for organizations of any size across any industry, it delivers complete lead-to-cash automation, real-time operational visibility, and integrated financial control. With clients spanning printing, import-export, and manufacturing sectors, Obsidian eliminates data silos and manual processes, giving leaders a single dashboard for every critical business function.",
     businessProblem:
-      "Printing and manufacturing businesses rely on disconnected spreadsheets and manual handoffs across CRM, sales, production, inventory, and accounting — creating data silos, pricing errors, and delayed invoicing at national scale.",
+      "Growing businesses manage operations across disconnected spreadsheets and siloed tools for CRM, sales, production, inventory, and accounting — creating costly reconciliation errors, pricing mistakes, and delayed invoicing.",
     architecturalSolution:
-      "A schema-first architecture where Frappe DocType metadata auto-generates TypeScript interfaces and Zod validation schemas, feeding into a Factory Pattern that eliminates 75% of boilerplate CRUD code. A centralized DocType registry provides a single source of truth for routing, queries, and UI generation across five enterprise modules.",
+      "A unified platform built with intelligent automation at its core. Auto-generated data contracts ensure zero drift between modules, while a factory pattern eliminates redundant workflows. Five enterprise modules share a single source of truth, enabling seamless data flow from first customer contact to final payment collection.",
     systemFlow:
       "Frappe DocType (Backend) → Type Generation → TypeScript + Zod Validation → Factory Pattern Hooks → Next.js App Router UI",
 
@@ -350,128 +355,69 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
   },
 
   // =========================================================================
-  // 3. OSKAZ ERP
+  // 3. PANA WEB
   // =========================================================================
   {
-    slug: "oskaz-erp",
-    title: "Oskaz Import ERP v3.0",
-    subtitle: "Full-Cycle Enterprise Resource Planning for Print & Manufacturing",
+    slug: "pana-web",
+    title: "Pana Web",
+    subtitle: "Premium Corporate Web Presence",
     summary:
-      "Comprehensive ERP system spanning CRM, Sales, Manufacturing, Inventory, Purchasing, Accounting, and Logistics — with six bounded contexts and Kubernetes-ready deployment for enterprise scale.",
-    category: "ERP",
-    tags: ["ERP", "Manufacturing", "Print", "Enterprise"],
+      "A stunning, conversion-optimized corporate website that transforms visitors into clients. Modern design meets strategic content architecture to showcase your brand at the highest level.",
+    category: "Corporate Web",
+    tags: ["Corporate", "Web Design", "CMS"],
     year: "2026",
     status: "Production",
-    liveUrl: "https://oskaz-erp.versalabs.com",
-    githubUrl: "https://github.com/VersaLabs/oskaz-erp",
+    githubUrl: "https://github.com/VersaLabs-Studio",
     heroGradient: "from-emerald-500/20 via-transparent to-teal-500/10",
+    thumbnail: "/Pana Web/Mockups/160shots_so.png",
 
     description:
-      "Oskaz Import ERP is a comprehensive enterprise resource planning system built specifically for the printing and manufacturing industry. It provides end-to-end business management from customer relationship management to financial reporting, enabling businesses to streamline operations through seven core modules: CRM, Sales, Manufacturing, Inventory, Purchasing, Accounting, and Logistics — all deployed on Docker + Kubernetes for enterprise-grade scalability.",
+      "Pana Web is a premium corporate web presence crafted to elevate brand perception and drive client acquisition. Featuring responsive design, strategic content placement, and seamless navigation, it transforms your digital footprint into a powerful business development tool that works around the clock.",
     businessProblem:
-      "Printing businesses manage complex workflows across sales quoting, bill-of-materials costing, multi-warehouse inventory, production scheduling, and double-entry accounting using fragmented tools, creating costly reconciliation errors and delayed fulfillment.",
+      "Businesses operating with outdated or template-based websites lose credibility with potential clients, resulting in missed opportunities and a brand perception gap that undermines their actual service quality.",
     architecturalSolution:
-      "A Next.js frontend with six DDD bounded contexts consuming a Frappe Framework backend via factory-pattern CRUD hooks. Each module (CRM, Sales, Manufacturing, Inventory, Accounting, Purchasing) operates as an independent domain with its own entities, services, and value objects, deployed on Docker + Kubernetes with automated CI/CD.",
+      "A modern, performance-optimized web platform with server-side rendering for instant page loads, intelligent content management for easy updates, and conversion-focused design patterns that guide visitors through a strategic journey from discovery to contact.",
     systemFlow:
-      "Lead → Quotation → Sales Order → BOM → Work Order → Material Request → Stock Entry → Delivery Note → Sales Invoice → Payment Entry",
+      "Visitor Arrival → Brand Discovery → Service Exploration → Portfolio Review → Client Testimonials → Contact Conversion",
 
     techStack: [
       {
         label: "Frontend",
         items: [
-          { name: "Next.js", version: "16.0.10", purpose: "Full-stack React framework with App Router" },
-          { name: "React", version: "19.2.3", purpose: "Concurrent features and hooks" },
-          { name: "TypeScript", version: "5.9.3", purpose: "Strict type checking" },
-          { name: "Tailwind CSS", version: "4.1.10", purpose: "Utility-first CSS with custom design system" },
-          { name: "Radix UI", purpose: "Accessible component primitives (shadcn/ui)" },
-          { name: "TanStack Query", version: "5.90.7", purpose: "Server state management" },
-          { name: "React Hook Form", version: "7.66.0", purpose: "Performant forms with validation" },
-          { name: "Zod", purpose: "Runtime type validation" },
-          { name: "Lucide React", version: "0.516.0", purpose: "Icon library" },
-          { name: "Recharts", version: "2.15.3", purpose: "Analytics and reporting charts" },
-          { name: "jsPDF", version: "3.0.3", purpose: "Client-side PDF generation" },
-          { name: "jspdf-autotable", purpose: "PDF table generation for reports" },
-        ],
-      },
-      {
-        label: "Backend",
-        items: [
-          { name: "Frappe Framework", purpose: "Python-based ERP platform" },
-          { name: "PostgreSQL", version: "13+", purpose: "Primary relational database (via Frappe ORM)" },
-          { name: "Redis", purpose: "Caching and background job queues" },
-        ],
-      },
-      {
-        label: "Infrastructure",
-        items: [
-          { name: "Docker", purpose: "Containerization" },
-          { name: "Kubernetes", purpose: "Enterprise orchestration and scaling" },
-          { name: "Nginx", purpose: "Load balancing and TLS termination" },
-          { name: "GitHub Actions", purpose: "Automated CI/CD pipeline" },
-          { name: "Let's Encrypt", purpose: "Auto-renewal SSL/TLS certificates" },
-          { name: "pnpm", purpose: "Workspace-aware package manager" },
-        ],
-      },
-      {
-        label: "Development Tools",
-        items: [
-          { name: "ESLint", version: "9", purpose: "Code linting with TypeScript ESLint" },
-          { name: "TypeDoc", purpose: "API documentation generation" },
-          { name: "Custom Type Generators", purpose: "Frappe DocType to TypeScript pipeline" },
+          { name: "Next.js", version: "16.x", purpose: "Performance-optimized web framework" },
+          { name: "TypeScript", version: "5.x", purpose: "Reliable codebase" },
+          { name: "Tailwind CSS", version: "4.x", purpose: "Custom design system" },
+          { name: "Framer Motion", purpose: "Premium animations" },
         ],
       },
     ],
 
     architecture: {
-      pattern: "Micro-Frontend Architecture with Domain-Driven Backend",
-      diagram:
-        "Next.js Frontend (React 19) ↔ Frappe Backend (Python) ↔ PostgreSQL Database (via Frappe ORM)\n\nBounded Contexts: CRM | Sales | Manufacturing | Inventory | Accounting | Purchasing",
-      designPatterns: [
-        "Domain-Driven Design with 6 Bounded Contexts",
-        "Factory Pattern for CRUD operations",
-        "Repository Pattern for data access",
-        "Event-Driven workflows (status transitions)",
-        "Double-Entry Accounting enforcement",
-        "Role-Based Access Control (4 roles)",
-      ],
+      pattern: "Server-Rendered Corporate Platform",
+      diagram: "Next.js SSR → Optimized Content Delivery → Edge CDN → Global Visitors",
+      designPatterns: ["Server-Side Rendering", "Responsive Design System", "Conversion Funnel Architecture"],
     },
 
     boundedContexts: [
-      { name: "CRM", responsibility: "Lead-to-customer conversion with qualification workflows", entities: ["Lead", "Customer", "Contact", "Address"] },
-      { name: "Sales", responsibility: "Quotation generation through delivery and invoicing", entities: ["Quotation", "SalesOrder", "SalesOrderItem"] },
-      { name: "Manufacturing", responsibility: "BOM management, work orders, and production tracking", entities: ["BOM", "BOMItem", "WorkOrder", "Workstation", "Operation"] },
-      { name: "Inventory", responsibility: "Multi-warehouse stock management with valuation", entities: ["Warehouse", "StockEntry", "Item", "MaterialRequest"] },
-      { name: "Accounting", responsibility: "Double-entry bookkeeping with AR/AP management", entities: ["SalesInvoice", "PurchaseInvoice", "PaymentEntry", "JournalEntry", "Account"] },
-      { name: "Purchasing", responsibility: "Material request to PO to vendor invoice pipeline", entities: ["PurchaseOrder", "Supplier", "PurchaseInvoice"] },
+      { name: "Brand Presentation", responsibility: "Company narrative, values, and visual identity", entities: ["Page", "Section", "MediaAsset"] },
+      { name: "Service Showcase", responsibility: "Service offerings and capability demonstrations", entities: ["Service", "CaseStudy", "Testimonial"] },
     ],
 
     schema: [
-      { name: "Customer", description: "Customer profiles with segmentation and credit limits", keyFields: ["name", "customer_name", "customer_type", "customer_group", "territory", "credit_limit"] },
-      { name: "Sales Order", description: "Confirmed orders with approval workflows", keyFields: ["name", "customer", "items", "delivery_date", "total", "status"] },
-      { name: "BOM", description: "Multi-level bill of materials with operations", keyFields: ["name", "item", "bom_items", "operations", "total_cost", "is_active"] },
-      { name: "Work Order", description: "Production jobs with routing and material consumption", keyFields: ["name", "bom", "qty", "planned_start", "actual_start", "status"] },
-      { name: "Stock Entry", description: "Material movements: receipt, issue, transfer", keyFields: ["name", "stock_entry_type", "items", "source_warehouse", "target_warehouse"] },
-      { name: "Payment Entry", description: "Payment processing with multi-reference reconciliation", keyFields: ["name", "payment_type", "party", "paid_amount", "references"] },
+      { name: "pages", description: "Site pages with SEO metadata", keyFields: ["id", "slug", "title", "meta_description", "content"] },
+      { name: "services", description: "Service offerings", keyFields: ["id", "name", "description", "features"] },
     ],
 
     features: [
-      { title: "Seven Core Modules", description: "CRM, Sales, Manufacturing, Inventory, Purchasing, Accounting, and Logistics — fully integrated with cross-domain workflow automation.", icon: "Layers" },
-      { title: "Logistics & Delivery", description: "Delivery note generation, driver/vehicle management, gate pass printing, and shipment tracking.", icon: "Truck" },
-      { title: "PDF Generation", description: "Client-side PDF reports for invoices, delivery notes, and gate passes using jsPDF with AutoTable.", icon: "FileText" },
-      { title: "AES-256 Data Encryption", description: "Enterprise-grade encryption at rest with comprehensive audit logging and CSRF protection.", icon: "Shield" },
-      { title: "Role-Based Access Control", description: "Four-tier permission system (Administrator, Manager, Operator, Viewer) with granular module access.", icon: "Lock" },
-      { title: "Sales Pipeline Analytics", description: "Dynamic pricing engine, customer credit limits, commission tracking, and conversion forecasting.", icon: "LineChart" },
+      { title: "Conversion-Optimized Design", description: "Every element strategically placed to guide visitors toward contacting your business.", icon: "Target" },
+      { title: "Blazing Performance", description: "Sub-second page loads with server-side rendering and edge caching for visitors worldwide.", icon: "Zap" },
+      { title: "Mobile-First Responsive", description: "Pixel-perfect experience across every device, from desktop monitors to mobile phones.", icon: "Smartphone" },
+      { title: "SEO Foundation", description: "Built-in search engine optimization ensuring your business ranks where it matters.", icon: "Search" },
     ],
 
     adrs: [
-      { id: "ADR-001", title: "Domain-Driven Design with 6 Bounded Contexts", status: "Accepted", rationale: "Each business module operates independently with clear domain boundaries." },
-      { id: "ADR-002", title: "Frappe Framework as Backend Platform", status: "Accepted", rationale: "Provides 80% of ERP functionality out-of-the-box with built-in multi-tenancy." },
-      { id: "ADR-003", title: "Next.js with App Router for Frontend", status: "Accepted", rationale: "SSR/SSG, built-in API routes, and Concurrent React for complex ERP interfaces." },
-      { id: "ADR-004", title: "TanStack Query for State Management", status: "Accepted", rationale: "Handles server state caching and synchronization across enterprise modules." },
-      { id: "ADR-005", title: "TypeScript Strict Mode", status: "Accepted", rationale: "Prevents runtime errors critical for enterprise financial data integrity." },
-      { id: "ADR-006", title: "Radix UI + Tailwind for Components", status: "Accepted", rationale: "WCAG-compliant accessibility with full customization flexibility." },
-      { id: "ADR-007", title: "Zod for Schema Validation", status: "Accepted", rationale: "TypeScript-first runtime validation ensuring data integrity at all boundaries." },
-      { id: "ADR-008", title: "Docker + Kubernetes for Deployment", status: "Accepted", rationale: "Enterprise scalability with blue-green deployments and easy rollbacks." },
+      { id: "ADR-001", title: "Server-Side Rendering for Performance", status: "Accepted", rationale: "Instant page loads improve visitor retention and search rankings." },
+      { id: "ADR-002", title: "Conversion-First Design System", status: "Accepted", rationale: "Design decisions driven by client acquisition metrics." },
     ],
   },
 
@@ -483,12 +429,15 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
     title: "OSKAZ E-Commerce",
     subtitle: "Enterprise Digital Commerce Platform",
     summary:
-      "Full-stack e-commerce platform with Clerk authentication, Frappe ERP backend integration, and four DDD bounded contexts powering OSKAZ's national-scale digital commerce operations.",
+      "A full-featured digital storefront enabling businesses to sell online with enterprise-grade security, real-time inventory sync, and a seamless checkout experience that converts browsers into buyers.",
     category: "E-Commerce",
-    tags: ["E-Commerce", "Enterprise", "DDD"],
+    tags: ["E-Commerce", "Enterprise", "Retail"],
     year: "2026",
     status: "Production",
+    githubUrl: "https://github.com/VersaLabs-Studio",
     heroGradient: "from-blue-500/20 via-transparent to-cyan-500/10",
+    thumbnail: "/Oskaz Import/Mockups/937shots_so.png",
+    imageDir: "Oskaz Import",
 
     description:
       "OSKAZ E-Commerce is a comprehensive digital commerce solution built for OSKAZ's enterprise operations spanning institutional and individual customers across Ethiopia. The platform implements Domain-Driven Design with four bounded contexts managing product catalogs, shopping carts, order lifecycle, and user management — all backed by Frappe ERP for inventory and fulfillment, and secured by Clerk authentication.",
@@ -598,13 +547,15 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
     title: "FastPay ET Wallet",
     subtitle: "Cross-Border Payment Mobile Application",
     summary:
-      "MSB-licensed cross-border remittance app enabling instant USD-to-ETB transfers with 60fps Reanimated animations, five DDD domains, and Zustand state management.",
+      "Send money home instantly. FastPay delivers lightning-fast cross-border transfers with real-time exchange rates, biometric security, and a mobile experience your customers will love.",
     category: "Fintech",
-    tags: ["Fintech", "Mobile", "React Native", "DDD"],
+    tags: ["Fintech", "Mobile", "Payments"],
     year: "2026",
     status: "Production",
     client: "FastPay LLC (NMLS #2327896)",
+    githubUrl: "https://github.com/VersaLabs-Studio",
     heroGradient: "from-green-500/20 via-transparent to-emerald-500/10",
+    thumbnail: "/FastPay/Mockups/228shots_so.png",
 
     description:
       "FastPay ET Wallet is a production-ready mobile application designed to facilitate seamless cross-border payments between the United States and Ethiopia. Built for FastPay LLC (MSB Licensed, NMLS #2327896), this application delivers a pixel-perfect user experience with 60fps UI-thread animations, comprehensive Zustand state management, and strict Domain-Driven Design across five core business domains — Auth, Wallet, Transaction, Contact, and Notification.",
@@ -723,13 +674,15 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
     title: "Pana Sports",
     subtitle: "National-Scale Ethiopian Football Platform",
     summary:
-      "Real-time football platform serving the Ethiopian football ecosystem with live match tracking, league management, bilingual CMS, and Supabase-powered real-time subscriptions.",
+      "The definitive Ethiopian football experience. Live scores, league standings, team profiles, and bilingual content — serving fans, clubs, and broadcasters at national scale.",
     category: "Sports",
-    tags: ["Sports", "Real-Time", "CMS", "Analytics"],
+    tags: ["Sports", "Real-Time", "Media"],
     year: "2026",
     status: "Production",
     liveUrl: "https://panasport.et",
+    githubUrl: "https://github.com/VersaLabs-Studio",
     heroGradient: "from-amber-500/20 via-transparent to-yellow-500/10",
+    thumbnail: "/Pana Sport/Mockups/562shots_so.png",
 
     description:
       "Pana Sports is VersaLabs' flagship public-facing product — a comprehensive digital platform serving the Ethiopian football ecosystem. It delivers real-time match tracking, league standings, team and player profiles, and a bilingual (English/Amharic) content management system. Covering Premier League, Ethiopian Cup, Higher League, and Women's League, it serves fans, club administrators, league officials, and media broadcasters at national scale.",
@@ -857,7 +810,9 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
     tags: ["Events", "CMS", "CRM", "Enterprise"],
     year: "2026",
     status: "Production",
+    githubUrl: "https://github.com/VersaLabs-Studio",
     heroGradient: "from-purple-500/20 via-transparent to-pink-500/10",
+    thumbnail: "/Pavillion360/Mockups/610shots_so.png",
 
     description:
       "Pavilion360 V2.0 represents a complete architectural transformation of a static marketing website into a fully data-driven, enterprise-grade platform with an integrated CMS and lightweight CRM. Built for a premium event production company specializing in audio-visual production and rental equipment, it features 8 comprehensive content modules, quote basket functionality, lead management, and Supabase PostgreSQL with Row Level Security.",
@@ -980,8 +935,9 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
     year: "2026",
     status: "Production",
     liveUrl: "https://printonline.et",
-    githubUrl: "https://github.com/versalabs/printonline-et",
+    githubUrl: "https://github.com/VersaLabs-Studio",
     heroGradient: "from-orange-500/20 via-transparent to-red-500/10",
+    thumbnail: "/PrintOnline-ET/Mockups/100shots_so.png",
 
     description:
       "PrintOnline.et is an enterprise-grade e-commerce platform built for the Ethiopian printing industry, empowering Pana Promotion to offer seamless online ordering for 15+ printing products. It features a matrix-based pricing engine replacing additive models, Chapa payment gateway integration for ETB transactions, an 8-step order status pipeline with email notifications, and a comprehensive admin CMS — transitioning from manual cash-on-delivery to a fully digital commerce operation.",
@@ -1103,7 +1059,9 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
     tags: ["SaaS", "Real-Time", "Multi-Tenant", "Healthcare"],
     year: "2026",
     status: "Production",
+    githubUrl: "https://github.com/VersaLabs-Studio",
     heroGradient: "from-sky-500/20 via-transparent to-blue-500/10",
+    thumbnail: "/AuroQueue/Mockups/628shots_so.png",
 
     description:
       "AuroQueue is an enterprise-grade Queue Management System architected for operational excellence in hospitals, banks, government offices, and enterprise organizations. It delivers real-time queue orchestration across three components — a Hapi.js API server, a Next.js staff dashboard, and an Expo self-service kiosk — with multi-tenant Docker deployment and Traefik load balancing for horizontal scaling.",
@@ -1219,8 +1177,9 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
     tags: ["Blockchain", "Enterprise", "Analytics"],
     year: "2026",
     status: "MVP",
-    githubUrl: "https://github.com/kidusabdula/potentia-web",
+    githubUrl: "https://github.com/VersaLabs-Studio",
     heroGradient: "from-yellow-500/20 via-transparent to-amber-500/10",
+    thumbnail: "/Potentia/Mockups/335shots_so.png",
 
     description:
       "Potentia is an enterprise-grade Bitcoin mining business management platform that transforms mining operations from technical endeavors into professional enterprises. Built around three interconnected phases — Learn (education & certification), Own (equipment & asset management), and Operate (fleet monitoring & financial reporting) — it guides users through every stage of building a mining business with domain-driven service architecture.",
@@ -1334,8 +1293,9 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
     tags: ["Analytics", "Social Media", "Real-Time"],
     year: "2026",
     status: "Development",
-    githubUrl: "https://github.com/kidusabdula/live-addis",
+    githubUrl: "https://github.com/VersaLabs-Studio",
     heroGradient: "from-pink-500/20 via-transparent to-rose-500/10",
+    thumbnail: "/LiveAddis/Mockups/47shots_so.png",
 
     description:
       "Live Addis is a proprietary web platform that aggregates real-time social media data from Facebook and Twitter, provides analytics dashboards with sentiment scoring, and offers customizable widget-based interfaces for monitoring live events in Addis Ababa. The application follows a strict DDD approach with four bounded contexts communicating via domain events, deployed on Vercel with automated CI/CD.",
@@ -1450,8 +1410,9 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
     tags: ["AI Infra", "AI/ML", "DevOps", "Automation"],
     year: "2026",
     status: "Development",
-    githubUrl: "https://github.com/kidusabdula/jarvis-core",
+    githubUrl: "https://github.com/VersaLabs-Studio",
     heroGradient: "from-cyan-500/20 via-transparent to-teal-500/10",
+    thumbnail: "/Jarvis/Mockups/175shots_so.png",
 
     description:
       "JARVIS Core is a self-hosted autonomous software engineering workflow system that orchestrates development tasks, automates code deployment pipelines, and scales for distributed enterprise operations. Built on OpenClaw as a self-hosted AI gateway with OpenRouter for unified multi-model LLM access, it integrates with GitHub, Vercel, Notion, Gmail, and VS Code via individual MCP (Model Context Protocol) servers — all containerized with Docker for portable, scalable deployment.",

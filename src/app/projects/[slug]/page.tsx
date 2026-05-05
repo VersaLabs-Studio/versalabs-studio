@@ -1,94 +1,55 @@
-'use client';
+import { notFound } from 'next/navigation';
+import { getProjectBySlug, getAllSlugs, getAllProjects, type ProjectEntry } from '@/config/project-database';
+import { getMockupImages, getScreenshotImages } from '@/lib/image-discovery';
+import ProjectDetailClient from '@/components/studio/ProjectDetailClient';
 
-import { Code2 } from 'lucide-react';
-import Link from 'next/link';
-import { FadeIn, GlassCard } from '@/components/ui/motion';
-import type { ProjectData } from '@/lib/catalog-parser';
-
-interface ProjectPageClientProps {
-  project: ProjectData;
+export interface DetailProjectData extends ProjectEntry {
+  mockupImages: string[];
+  screenshotImages: string[];
 }
 
-export default function ProjectPageClient({ project }: ProjectPageClientProps) {
-  return (
-    <div className="min-h-screen px-6 py-24">
-      <div className="mx-auto max-w-4xl">
-        <FadeIn>
-          <Link href="/projects" className="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors mb-8">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M19 12H5M12 19l-7-7 7-7" />
-            </svg>
-            Back to Projects
-          </Link>
-        </FadeIn>
+export interface SimilarProject {
+  slug: string;
+  title: string;
+  subtitle: string;
+  category: string;
+  heroGradient: string;
+  thumbnail?: string;
+}
 
-        <FadeIn delay={0.1}>
-          <div className="mb-2 inline-flex items-center gap-2 text-xs text-zinc-400">
-            <Code2 className="h-3.5 w-3.5" />
-            {project.title}
-          </div>
-          <h1 className="text-4xl font-bold tracking-tight text-white">{project.title}</h1>
-          <p className="mt-4 text-lg text-zinc-400">{project.description}</p>
-        </FadeIn>
+export async function generateStaticParams() {
+  const slugs = getAllSlugs();
+  return slugs.map((slug) => ({ slug }));
+}
 
-        <FadeIn delay={0.2}>
-          <div className="mt-6 flex flex-wrap gap-3">
-            {project.githubUrl && (
-              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm text-white transition-colors hover:bg-white/10">
-                Source Code
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M7 17L17 7M17 7H7M17 7v10" />
-                </svg>
-              </a>
-            )}
-            {project.liveUrl && (
-              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg bg-white/10 border border-white/10 px-4 py-2 text-sm text-white transition-colors hover:bg-white/15">
-                Live Demo
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M7 17L17 7M17 7H7M17 7v10" />
-                </svg>
-              </a>
-            )}
-          </div>
-        </FadeIn>
+export default async function ProjectDetailPage({ params }: { params: { slug: string } }) {
+  const resolvedParams = await Promise.resolve(params);
+  const project = getProjectBySlug(resolvedParams.slug);
 
-        <FadeIn delay={0.4}>
-          <div className="mt-8">
-            <h2 className="text-lg font-semibold mb-4 text-white">Tech Stack</h2>
-            <div className="flex flex-wrap gap-2">
-              {project.stack.map((t: string) => (
-                <span key={t} className="rounded-lg bg-white/5 border border-white/10 px-3 py-1.5 text-sm text-zinc-400">{t}</span>
-              ))}
-            </div>
-          </div>
-        </FadeIn>
+  if (!project) {
+    notFound();
+  }
 
-        <FadeIn delay={0.5}>
-          <div className="mt-8">
-            <h2 className="text-lg font-semibold mb-4 text-white">System Flow</h2>
-            <GlassCard className="p-6">
-              <p className="text-sm text-zinc-400 leading-relaxed">
-                {project.systemFlow}
-              </p>
-            </GlassCard>
-          </div>
-        </FadeIn>
+  const projectWithImages: DetailProjectData = {
+    ...project,
+    mockupImages: getMockupImages(project.title, project.slug, project.imageDir),
+    screenshotImages: getScreenshotImages(project.title, project.slug, project.imageDir),
+  };
 
-        <FadeIn delay={0.6}>
-          <div className="mt-8">
-            <h2 className="text-lg font-semibold mb-4 text-white">Project Tags</h2>
-            <div className="flex flex-wrap gap-2">
-              {project.tags.map((tag: string) => (
-                <span key={tag} className="rounded-md bg-white/10 px-2.5 py-1 text-xs text-white border border-white/10">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-        </FadeIn>
-      </div>
-    </div>
-  );
+  // Get similar projects (same category or shared tags, excluding self)
+  const allProjects = getAllProjects();
+  const similar: SimilarProject[] = allProjects
+    .filter(p => p.slug !== project.slug)
+    .filter(p => p.category === project.category || p.tags.some(t => project.tags.includes(t)))
+    .slice(0, 3)
+    .map(p => ({
+      slug: p.slug,
+      title: p.title,
+      subtitle: p.subtitle,
+      category: p.category,
+      heroGradient: p.heroGradient,
+      thumbnail: p.thumbnail,
+    }));
+
+  return <ProjectDetailClient project={projectWithImages} similarProjects={similar} />;
 }

@@ -16,7 +16,7 @@ const SHOWCASE_CONFIG = [
   { 
     slug: 'obsidian-erp-v3.0',
     title: 'Obsidian ERP',
-    img: '/obsidian-erp-2 (2).png', 
+    img: '/ObsidianERP/obsidian-erp-2 (2).png',
     invert: false,
     description: 'An enterprise-grade, global market ERP architected for limitless scale. Transforms lead-to-cash pipelines, real-time manufacturing execution, and double-entry financial control into a unified digital workflow.',
     capabilities: ['Lead-to-Cash Automation', 'Manufacturing Execution', 'Double-Entry Bookkeeping', 'Multi-Tenant Architecture'],
@@ -24,7 +24,7 @@ const SHOWCASE_CONFIG = [
   { 
     slug: 'threatmatrix-ai',
     title: 'ThreatMatrix AI',
-    img: '/threatmatrix-ai-1.png', 
+    img: '/ThreatMatrix-AI/threatmatrix-ai-1.png',
     invert: true,
     description: 'Enterprise-grade anomaly detection and cyber threat intelligence platform. Purpose-built for national-scale security operations with real-time packet capture, automated intelligence enrichment, and conversational AI analysts.',
     capabilities: ['Live Network Sniffing', 'Isolation Forest ML Detection', 'OpenRouter LLM Intelligence', 'Real-time WebSocket Command Center']
@@ -32,7 +32,7 @@ const SHOWCASE_CONFIG = [
   { 
     slug: 'auroqueue',
     title: 'AuroQueue QMS',
-    img: '/auroqueue-1.png', 
+    img: '/AuroQueue/796shots_so.png', 
     invert: false,
     description: 'Enterprise Queue Management System designed for hospital networks and global banks. Delivers live queue orchestration across multi-tenant self-service kiosks paired with advanced performance analytics.',
     capabilities: ['Real-time Orchestration', 'Multi-Department Dashboards', 'Hardware Self-Service Kiosks', 'High-Availability Scaling']
