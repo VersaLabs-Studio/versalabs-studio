@@ -1,8 +1,9 @@
 import Hero from '@/components/sections/Hero';
 import ObsidianShowcase from '@/components/sections/ObsidianShowcase';
 import CoreCapabilities from '@/components/sections/CoreCapabilities';
-import GeometricDivider from '@/components/sections/GeometricDivider';
+import WhyChooseUs from '@/components/sections/WhyChooseUs';
 import FeaturedProjects from '@/components/sections/FeaturedProjects';
+import GlobalReach from '@/components/sections/GlobalReach';
 import CallToAction from '@/components/sections/CallToAction';
 import { getAllProjects } from '@/config/project-database';
 
@@ -14,9 +15,9 @@ export default function Home() {
       <Hero />
       <ObsidianShowcase />
       <CoreCapabilities />
-      <GeometricDivider variant="a" />
+      <WhyChooseUs />
       <FeaturedProjects projects={projects} />
-      <GeometricDivider variant="b" />
+      <GlobalReach />
       <CallToAction />
     </>
   );

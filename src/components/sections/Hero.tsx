@@ -76,12 +76,12 @@ export default function Hero() {
   const contentY = useTransform(scrollYProgress, [0, 0.4], [0, -60]);
 
   return (
-    <section ref={containerRef} className="relative flex min-h-[100vh] flex-col items-center justify-center px-6 pt-24 text-center overflow-hidden">
+    <section ref={containerRef} className="relative flex min-h-[100svh] flex-col items-center justify-center px-6 pt-24 text-center overflow-x-clip">
       
       {/* Parallax Background Glow */}
       <motion.div 
         style={{ y: bgY, scale: glowScale, opacity: glowOpacity }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[900px] h-[600px] pointer-events-none"
       >
         <div className="w-full h-full bg-white/[0.03] blur-[140px] rounded-full" />
       </motion.div>
@@ -116,7 +116,7 @@ export default function Hero() {
       </motion.div>
 
       <motion.div 
-        style={{ opacity: contentOpacity, y: contentY }}
+        style={{ y: contentY }}
         className="relative z-10 flex flex-col items-center w-full max-w-5xl"
       >
         <motion.div
@@ -141,10 +141,10 @@ export default function Hero() {
           </motion.div>
 
           {/* Huge Heading — staggered word reveal */}
-          <motion.h1 variants={slideUp} className="text-[42px] leading-[1.05] font-semibold tracking-tighter text-white sm:text-6xl md:text-7xl lg:text-[5.5rem]">
+          <motion.h1 variants={slideUp} className="text-4xl leading-[1.1] font-semibold tracking-tighter text-white sm:text-6xl md:text-7xl lg:text-[5.5rem]">
             We Build Smart Systems
           </motion.h1>
-          <motion.h1 variants={slideUp} className="text-[42px] leading-[1.05] font-semibold tracking-tighter sm:text-6xl md:text-7xl lg:text-[5.5rem] bg-gradient-to-b from-white to-white/40 bg-clip-text text-transparent">
+          <motion.h1 variants={slideUp} className="text-4xl leading-[1.1] font-semibold tracking-tighter sm:text-6xl md:text-7xl lg:text-[5.5rem] bg-gradient-to-b from-white to-white/40 bg-clip-text text-transparent">
             That Power Your Business
           </motion.h1>
 

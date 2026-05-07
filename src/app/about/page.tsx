@@ -233,74 +233,67 @@ export default function AboutPage() {
       </section>
 
       {/* =================================================================== */}
-      {/* GEOMETRIC BENTO — HOW WE THINK                                    */}
+      {/* STRUCTURED BENTO — HOW WE THINK                                    */}
       {/* =================================================================== */}
-      <section className="px-6 py-24 border-t border-white/[0.04] relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-gradient-to-br from-emerald-500/5 via-transparent to-cyan-500/5 blur-[120px] rounded-full pointer-events-none" />
+      <section className="px-6 py-24 border-t border-white/[0.04] bg-[#0A0A0C]">
+        <div className="mx-auto max-w-6xl">
+          <FadeIn>
+            <span className="text-[11px] uppercase tracking-[0.2em] font-semibold text-emerald-400/70 mb-6 block">Our Philosophy</span>
+            <h2 className="text-[32px] md:text-[40px] leading-[1.1] font-semibold tracking-tighter text-white max-w-4xl">
+              Small team.{' '}
+              <span className="text-zinc-500">
+                Big impact. We believe the best software comes from small, focused teams that move fast and care deeply about quality. Every engineer at VersaLabs is full-stack — meaning fewer handoffs, faster shipping, and products that feel unified from the first click to the last.
+              </span>
+            </h2>
+          </FadeIn>
 
-        <div className="mx-auto max-w-6xl relative z-10">
-          <div className="grid lg:grid-cols-5 gap-12 mb-20 items-center">
-            {/* Left: Animated SVGs */}
-            <motion.div 
-              initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
-              className="lg:col-span-2 flex items-center justify-center gap-6"
-            >
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' as const }}
-                className="w-36 h-36"
-              >
-                <svg viewBox="0 0 100 100" className="w-full h-full">
-                  <motion.path custom={0} variants={drawLine} d="M50 10 L90 30 L90 70 L50 90 L10 70 L10 30 Z" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
-                  <motion.path custom={1} variants={drawLine} d="M50 25 L75 38 L75 62 L50 75 L25 62 L25 38 Z" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
-                  <motion.circle custom={2} variants={drawLine} cx="50" cy="50" r="10" fill="none" stroke="rgba(255,255,255,0.12)" strokeWidth="1" strokeDasharray="3 3" />
-                  <motion.circle custom={3} variants={drawLine} cx="50" cy="50" r="3" fill="rgba(255,255,255,0.2)" stroke="none" />
-                </svg>
-              </motion.div>
-              <motion.div
-                animate={{ y: [0, 6, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' as const, delay: 1 }}
-                className="w-36 h-36 hidden md:block"
-              >
-                <svg viewBox="0 0 100 100" className="w-full h-full">
-                  <motion.path custom={0} variants={drawLine} d="M20 50 Q50 15, 80 50 Q50 85, 20 50" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
-                  <motion.path custom={1} variants={drawLine} d="M30 50 Q50 25, 70 50 Q50 75, 30 50" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
-                  <motion.line custom={2} variants={drawLine} x1="20" y1="50" x2="80" y2="50" stroke="rgba(255,255,255,0.05)" strokeWidth="0.5" />
-                  <motion.line custom={3} variants={drawLine} x1="50" y1="15" x2="50" y2="85" stroke="rgba(255,255,255,0.05)" strokeWidth="0.5" />
-                </svg>
-              </motion.div>
-            </motion.div>
-
-            {/* Right: Text */}
-            <div className="lg:col-span-3">
-              <FadeIn>
-                <span className="text-[11px] uppercase tracking-[0.2em] font-semibold text-emerald-400/70 mb-6 block">Our Philosophy</span>
-                <h2 className="text-[36px] md:text-[44px] leading-[1.1] font-bold tracking-tighter text-white mb-6">
-                  Small team.{' '}
-                  <span className="text-zinc-500">Big impact.</span>
-                </h2>
-                <p className="text-[16px] text-zinc-400 leading-relaxed max-w-xl">
-                  We believe the best software comes from small, focused teams that move fast and care deeply about quality. Every engineer at VersaLabs is full-stack — meaning fewer handoffs, faster shipping, and products that feel unified from the first click to the last.
-                </p>
-              </FadeIn>
-            </div>
-          </div>
-
-          {/* Principles Bento Grid */}
-          <StaggerContainer staggerDelay={0.08} className="grid gap-0 sm:grid-cols-2 lg:grid-cols-3 border border-white/[0.04] rounded-2xl overflow-hidden">
+          <StaggerContainer staggerDelay={0.15} className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-white/[0.04]">
             {principles.map((p, idx) => (
               <StaggerItem key={p.title}>
-                <motion.div
-                  whileHover={{ backgroundColor: 'rgba(255,255,255,0.02)' }}
-                  transition={{ duration: 0.3 }}
-                  className={`p-8 h-full flex flex-col group transition-colors ${
-                    idx < principles.length - 1 ? 'border-b sm:border-r border-white/[0.04]' : ''
-                  } ${idx % 3 === 2 ? 'sm:border-r-0' : ''}`}
-                >
-                  <span className="text-xl mb-4 opacity-20 group-hover:opacity-50 transition-opacity duration-500">{p.icon}</span>
-                  <h3 className="font-bold text-white text-[15px] mb-2">{p.title}</h3>
-                  <p className="text-[13px] text-zinc-500 leading-relaxed">{p.desc}</p>
-                </motion.div>
+                <div className="flex flex-col h-full border-r border-b border-white/[0.04] overflow-hidden group">
+                  <div className="p-8 pb-0">
+                    <span className="text-[10px] font-medium tracking-widest text-zinc-600 uppercase mb-8 block">
+                      FIG 0.{idx + 1}
+                    </span>
+                    
+                    {/* Visual: Isometric geometric placeholder */}
+                    <div className="h-40 w-full flex items-center justify-center relative transition-transform duration-700 ease-out group-hover:-translate-y-2">
+                      <svg viewBox="0 0 200 200" className="w-full h-full opacity-60 group-hover:opacity-100 transition-opacity duration-700">
+                        <g fill="none" stroke="currentColor" strokeWidth="1" className="text-zinc-600">
+                          {idx % 3 === 0 && (
+                            <>
+                              <path d="M100 40 L160 70 L100 100 L40 70 Z" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" />
+                              <circle cx="100" cy="70" r="16" stroke="rgba(255,255,255,0.4)" strokeDasharray="2 2" />
+                              <path d="M100 60 L160 90 L100 120 L40 90 Z" />
+                            </>
+                          )}
+                          {idx % 3 === 1 && (
+                            <>
+                              <circle cx="100" cy="100" r="40" stroke="rgba(255,255,255,0.2)" />
+                              <ellipse cx="100" cy="100" rx="40" ry="15" stroke="rgba(255,255,255,0.4)" />
+                              <path d="M60 100 L140 100 M100 60 L100 140" stroke="rgba(255,255,255,0.2)" />
+                            </>
+                          )}
+                          {idx % 3 === 2 && (
+                            <>
+                              <path d="M50 140 L60 135 L60 145 L50 150 Z" />
+                              <path d="M80 124 L90 119 L90 139 L80 144 Z" />
+                              <path d="M110 108 L120 103 L120 133 L110 138 Z" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.3)" />
+                              <path d="M140 102 L150 97 L150 127 L140 132 Z" />
+                            </>
+                          )}
+                        </g>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <div className="mt-auto p-8 pt-6 bg-gradient-to-t from-[#101012] to-transparent border-t border-white/[0.02]">
+                    <h3 className="text-sm font-semibold text-white mb-2">{p.title}</h3>
+                    <p className="text-[13px] leading-relaxed text-zinc-500">
+                      {p.desc}
+                    </p>
+                  </div>
+                </div>
               </StaggerItem>
             ))}
           </StaggerContainer>
@@ -361,21 +354,33 @@ export default function AboutPage() {
           </FadeIn>
           <StaggerContainer staggerDelay={0.08} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-2">
             {[
-              { label: 'Frontend & UI', items: ['TypeScript', 'Next.js 14 App Router', 'React 18', 'Tailwind CSS v3', 'Framer Motion', 'Radix UI', 'Lucide Icons', 'Zustand', 'React Query', 'SWR'] },
-              { label: 'Backend & APIs', items: ['Python 3.11', 'FastAPI', 'Node.js 20', 'Express', 'tRPC', 'Prisma ORM', 'Drizzle ORM', 'Socket.io', 'GraphQL', 'Stripe API', 'Chapa API', 'Telebirr API'] },
-              { label: 'Data & Infrastructure', items: ['PostgreSQL', 'Redis', 'MongoDB', 'Supabase', 'Vercel Serverless', 'Docker', 'AWS S3', 'Clerk Auth', 'NextAuth', 'Cloudflare'] },
-              { label: 'AI & Machine Learning', items: ['OpenRouter AI', 'OpenAI GPT-4', 'Anthropic Claude', 'Hugging Face', 'TensorFlow', 'Scapy', 'LangChain', 'Pinecone Vector DB'] }
+              { 
+                label: 'Frontend & UI', 
+                items: ['TypeScript', 'Next.js 14 App Router', 'React 18', 'Tailwind CSS v3', 'Framer Motion', 'Radix UI', 'Lucide Icons', 'Zustand', 'React Query', 'SWR', 'Three.js', 'React Three Fiber', 'Shadcn UI', 'Headless UI', 'MUI', 'Chakra UI', 'Styled Components', 'SCSS', 'React Hook Form', 'Zod', 'Yup', 'React Dropzone', 'React Toastify', 'Sonner', 'Chart.js', 'Recharts', 'Date-fns', 'Day.js', 'Moment.js', 'Next-Intl', 'I18next'] 
+              },
+              { 
+                label: 'Backend & APIs', 
+                items: ['Python 3.11', 'FastAPI', 'Node.js 20', 'Express', 'NestJS', 'tRPC', 'Prisma ORM', 'Drizzle ORM', 'Sequelize', 'TypeORM', 'Mongoose', 'Socket.io', 'GraphQL', 'Apollo Server', 'REST', 'gRPC', 'RabbitMQ', 'Celery', 'Redis Pub/Sub', 'Kafka', 'Stripe API', 'Chapa API', 'Telebirr API', 'PayPal SDK', 'Twilio', 'SendGrid', 'Nodemailer', 'Pusher'] 
+              },
+              { 
+                label: 'Data & Infrastructure', 
+                items: ['PostgreSQL', 'Redis', 'MongoDB', 'MySQL', 'SQLite', 'Supabase', 'Firebase', 'Vercel Serverless', 'Docker', 'Kubernetes', 'AWS S3', 'AWS EC2', 'AWS Lambda', 'AWS RDS', 'Google Cloud Run', 'DigitalOcean Droplets', 'Cloudflare Workers', 'Nginx', 'Apache', 'Clerk Auth', 'NextAuth.js', 'Auth0', 'JWT', 'OAuth2', 'GitHub Actions', 'GitLab CI', 'Terraform', 'Ansible'] 
+              },
+              { 
+                label: 'AI & Machine Learning', 
+                items: ['OpenRouter AI', 'OpenAI GPT-4', 'Anthropic Claude 3', 'Hugging Face Transformers', 'TensorFlow', 'PyTorch', 'Scikit-Learn', 'Pandas', 'NumPy', 'SciPy', 'Scapy', 'NLTK', 'Spacy', 'LangChain', 'LlamaIndex', 'Pinecone Vector DB', 'Milvus', 'Weaviate', 'ChromaDB', 'FAISS', 'Ollama', 'Stable Diffusion', 'Midjourney API'] 
+              }
             ].map((stack) => (
               <StaggerItem key={stack.label}>
-                <GlassCard className="p-6 h-full">
-                  <h3 className="font-semibold text-white text-sm mb-4">{stack.label}</h3>
-                  <div className="flex flex-wrap gap-2">
+                <GlassCard className="p-6 h-full flex flex-col group transition-colors hover:border-white/[0.15]">
+                  <h3 className="font-bold text-white text-[15px] mb-5 border-b border-white/[0.04] pb-4">{stack.label}</h3>
+                  <div className="flex flex-wrap gap-2 mt-auto">
                     {stack.items.map((t) => (
                       <motion.span
                         key={t}
-                        whileHover={{ scale: 1.05, borderColor: 'rgba(255,255,255,0.15)' }}
+                        whileHover={{ scale: 1.05, borderColor: 'rgba(255,255,255,0.2)', backgroundColor: 'rgba(255,255,255,0.06)' }}
                         transition={SPRING}
-                        className="rounded-lg bg-[#1C1C1F] px-3 py-1.5 text-xs text-zinc-400 border border-white/[0.06] cursor-default"
+                        className="rounded-md bg-[#161618] px-2.5 py-1 text-[11px] font-medium text-zinc-400 border border-white/[0.04] cursor-default transition-colors"
                       >
                         {t}
                       </motion.span>

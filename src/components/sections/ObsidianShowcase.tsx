@@ -48,17 +48,10 @@ export default function ObsidianShowcase() {
           </span>
         </motion.div>
 
-        {/* IMAX Container */}
-        <Link href="/projects/obsidian-erp-v3.0" className="block group">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 40 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ type: 'spring', stiffness: 200, damping: 30, duration: 1.2 }}
-            whileHover={{ scale: 1.01 }}
-            className="relative w-full aspect-[4/3] sm:aspect-[16/9] md:aspect-[21/9] rounded-2xl overflow-hidden border border-white/[0.06] shadow-2xl shadow-violet-500/5"
-          >
-            {/* Parallax Image */}
+        {/* Asymmetric Bento Container */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Cinematic Image Pane */}
+          <Link href="/projects/obsidian-erp-v3.0" className="lg:col-span-2 block group relative rounded-2xl overflow-hidden border border-white/[0.06] shadow-2xl shadow-violet-500/5 aspect-[4/3] sm:aspect-[16/9] lg:aspect-auto min-h-[400px]">
             <motion.div
               style={{ scale: imageScale, y: imageY }}
               className="absolute inset-0"
@@ -67,63 +60,66 @@ export default function ObsidianShowcase() {
                 src="/Obsidian ERP/Mockups/New folder/obsidian-erp-2 (2).png"
                 alt="Obsidian ERP v3.0 — All-in-One Business Platform"
                 fill
-                className="object-cover"
-                sizes="100vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                sizes="(max-width: 1024px) 100vw, 66vw"
                 priority
               />
             </motion.div>
+            {/* Subtle inner shadow */}
+            <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/[0.06] pointer-events-none" />
+            <div className="absolute -bottom-20 -right-20 w-[300px] h-[300px] bg-violet-500/10 blur-[80px] rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+          </Link>
 
-            {/* Gradient Overlay */}
-            <motion.div
-              style={{ opacity: overlayOpacity }}
-              className="absolute inset-0 bg-gradient-to-t from-[#0A0A0C] via-[#0A0A0C]/40 to-transparent"
-            />
-
-            {/* Content Overlay */}
-            <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-8 md:p-14 z-10">
-              {/* Floating Feature Pills */}
-              <div className="hidden sm:flex flex-wrap gap-2 mb-4 md:mb-8">
-                {FEATURES.map((feat) => (
-                  <motion.span
-                    key={feat.label}
-                    initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
-                    whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.4 + feat.delay, duration: 0.8, type: 'spring' }}
-                    className="px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-white/[0.06] backdrop-blur-xl border border-white/[0.1] text-[10px] md:text-[12px] font-medium text-white/80"
-                  >
-                    {feat.label}
-                  </motion.span>
-                ))}
-              </div>
-
-              {/* Title & CTA */}
-              <motion.div
-                initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
-                whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3, duration: 1, type: 'spring', stiffness: 100 }}
-              >
-                <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-white mb-2 md:mb-3">
+          {/* Context GlassCard Pane */}
+          <motion.div 
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ type: 'spring', stiffness: 200, damping: 30, delay: 0.2 }}
+            className="flex flex-col h-full rounded-2xl bg-[#161618] border border-white/[0.06] overflow-hidden group"
+          >
+            <div className="p-8 lg:p-10 flex flex-col h-full relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              
+              <div className="mb-auto">
+                <span className="inline-block px-3 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/20 text-[11px] font-semibold tracking-widest uppercase text-violet-400 mb-6">
+                  Available Now
+                </span>
+                
+                <h2 className="text-3xl md:text-4xl font-bold tracking-tighter text-white mb-4">
                   Obsidian ERP
                 </h2>
-                <p className="text-[13px] sm:text-[15px] md:text-lg text-zinc-300 max-w-xl mb-4 md:mb-6 leading-relaxed line-clamp-2 md:line-clamp-none">
+                
+                <p className="text-[15px] leading-[1.6] text-zinc-400 mb-8">
                   Run your entire business from one place. Sales, inventory, manufacturing, 
-                  and accounting — connected in a single platform.
+                  and accounting — connected in a single, unbloated platform.
                 </p>
-                <span className="inline-flex items-center gap-2 text-white font-semibold text-[15px] group-hover:gap-3 transition-all">
+                
+                <div className="flex flex-col gap-3 mb-10">
+                  {FEATURES.map((feat) => (
+                    <div key={feat.label} className="flex items-center gap-3 text-[13px] text-zinc-300 font-medium">
+                      <div className="w-1.5 h-1.5 rounded-full bg-white/40" />
+                      {feat.label}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <Link href="/projects/obsidian-erp-v3.0">
+                <motion.button 
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 text-[14px] font-semibold tracking-wide text-black bg-white rounded-xl transition-colors hover:bg-zinc-200"
+                >
                   Explore Platform
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
-                </span>
-              </motion.div>
+                </motion.button>
+              </Link>
             </div>
-
-            {/* Corner Glow Effect */}
-            <div className="absolute -bottom-20 -right-20 w-[300px] h-[300px] bg-violet-500/10 blur-[80px] rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
           </motion.div>
-        </Link>
+        </div>
       </div>
     </section>
   );
