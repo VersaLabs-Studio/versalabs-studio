@@ -20,7 +20,7 @@ const drawLine = {
 const team = [
   {
     name: 'Kidus Abdula',
-    role: 'Founder & Systems Architect',
+    role: 'Founder & Lead AI Software Engineer',
     portrait: '/Kidus.jpg',
     hasImage: true,
     bio: 'Full-stack systems architect and AI specialist leading VersaLabs Studio. Designs and builds enterprise platforms from the ground up — from database schema to production deployment. Obsessed with clean architecture and shipping fast.',
@@ -136,9 +136,9 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen">
 
-      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* =================================================================== */}
       {/* HERO                                                              */}
-      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* =================================================================== */}
       <section ref={heroRef} className="px-6 pt-40 pb-24 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-gradient-to-br from-violet-500/6 via-white/[0.02] to-indigo-500/6 blur-[140px] rounded-full pointer-events-none" />
         
@@ -175,10 +175,6 @@ export default function AboutPage() {
                     <div className="text-3xl font-bold text-white mb-1">15+</div>
                     <div className="text-[11px] text-zinc-500 uppercase tracking-wider">Products</div>
                   </GlassCard>
-                  <GlassCard hover={false} className="col-span-2 p-5 text-center">
-                    <div className="text-xl font-bold text-white mb-1">Addis Ababa → Global</div>
-                    <div className="text-[11px] text-zinc-500 uppercase tracking-wider">Built locally, deployed worldwide</div>
-                  </GlassCard>
                 </div>
               </ScaleIn>
             </div>
@@ -186,9 +182,9 @@ export default function AboutPage() {
         </motion.div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* =================================================================== */}
       {/* TEAM                                                              */}
-      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* =================================================================== */}
       <section className="px-6 py-24 border-t border-white/[0.04]">
         <div className="mx-auto max-w-6xl">
           <FadeIn>
@@ -236,9 +232,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* =================================================================== */}
       {/* GEOMETRIC BENTO — HOW WE THINK                                    */}
-      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* =================================================================== */}
       <section className="px-6 py-24 border-t border-white/[0.04] relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-gradient-to-br from-emerald-500/5 via-transparent to-cyan-500/5 blur-[120px] rounded-full pointer-events-none" />
 
@@ -311,9 +307,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* =================================================================== */}
       {/* TIMELINE                                                          */}
-      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* =================================================================== */}
       <section className="px-6 py-24 border-t border-white/[0.04]">
         <div className="mx-auto max-w-3xl">
           <FadeIn>
@@ -355,19 +351,20 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* =================================================================== */}
       {/* TECH STACK BENTO                                                  */}
-      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* =================================================================== */}
       <section className="px-6 py-24 border-t border-white/[0.04]">
         <div className="mx-auto max-w-5xl">
           <FadeIn>
             <h2 className="text-3xl font-bold mb-12 text-white">Our Technology</h2>
           </FadeIn>
-          <StaggerContainer staggerDelay={0.08} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <StaggerContainer staggerDelay={0.08} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-2">
             {[
-              { label: 'Frontend', items: ['TypeScript', 'Next.js', 'React', 'Tailwind CSS', 'Framer Motion'] },
-              { label: 'Backend', items: ['Python', 'FastAPI', 'Node.js', 'PostgreSQL', 'Redis'] },
-              { label: 'Infrastructure', items: ['Docker', 'Supabase', 'Vercel', 'OpenRouter AI', 'Clerk Auth'] },
+              { label: 'Frontend & UI', items: ['TypeScript', 'Next.js 14 App Router', 'React 18', 'Tailwind CSS v3', 'Framer Motion', 'Radix UI', 'Lucide Icons', 'Zustand', 'React Query', 'SWR'] },
+              { label: 'Backend & APIs', items: ['Python 3.11', 'FastAPI', 'Node.js 20', 'Express', 'tRPC', 'Prisma ORM', 'Drizzle ORM', 'Socket.io', 'GraphQL', 'Stripe API', 'Chapa API', 'Telebirr API'] },
+              { label: 'Data & Infrastructure', items: ['PostgreSQL', 'Redis', 'MongoDB', 'Supabase', 'Vercel Serverless', 'Docker', 'AWS S3', 'Clerk Auth', 'NextAuth', 'Cloudflare'] },
+              { label: 'AI & Machine Learning', items: ['OpenRouter AI', 'OpenAI GPT-4', 'Anthropic Claude', 'Hugging Face', 'TensorFlow', 'Scapy', 'LangChain', 'Pinecone Vector DB'] }
             ].map((stack) => (
               <StaggerItem key={stack.label}>
                 <GlassCard className="p-6 h-full">
@@ -391,9 +388,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* =================================================================== */}
       {/* CTA                                                               */}
-      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* =================================================================== */}
       <section className="px-6 py-32 border-t border-white/[0.04] relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-white/[0.02] blur-[100px] rounded-full pointer-events-none animate-glow-pulse" />
         <div className="mx-auto max-w-3xl text-center relative z-10">

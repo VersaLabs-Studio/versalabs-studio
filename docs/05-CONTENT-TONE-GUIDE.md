@@ -8,6 +8,8 @@
 
 ### 1. Accessible, Not Dumbed Down
 
+**Content Tone Shift**: Lowering reading difficulty across all text while keeping the premium narrative. Jargon like "autonomous", "bounded contexts", "schema-first" will be simplified or contextualized for non-technical visitors. Example: "Engineering Autonomous Enterprise Systems" → "We Build Smart Systems That Power Your Business".
+
 We lowered the reading difficulty across the entire platform without losing our premium, professional positioning. The goal: **any business owner in Addis Ababa should understand what we do within 5 seconds of landing on the site**, while a CTO in San Francisco should still see us as enterprise-grade.
 
 **Before (V3):**

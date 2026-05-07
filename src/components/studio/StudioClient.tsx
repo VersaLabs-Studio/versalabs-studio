@@ -37,9 +37,9 @@ export default function StudioClient({ projects }: StudioClientProps) {
   return (
     <div className="min-h-screen">
 
-      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* =================================================================== */}
       {/* HERO SECTION — Featured Products                                  */}
-      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* =================================================================== */}
       <section className="relative px-6 pt-40 pb-24 bg-[#0A0A0C] overflow-hidden">
         {/* Background */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
@@ -64,22 +64,55 @@ export default function StudioClient({ projects }: StudioClientProps) {
               </FadeIn>
             </div>
             
-            {/* Stats */}
+            {/* Stats / Interactive Data Pane */}
             <div className="lg:col-span-4 flex flex-col gap-4 justify-end">
               <FadeIn delay={0.2}>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/[0.04] backdrop-blur-sm">
-                    <div className="text-3xl font-bold text-white mb-1">15+</div>
-                    <div className="text-sm text-zinc-500">Products Shipped</div>
-                  </div>
-                  <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/[0.04] backdrop-blur-sm">
-                    <div className="text-3xl font-bold text-white mb-1">100%</div>
-                    <div className="text-sm text-zinc-500">Custom Built</div>
-                  </div>
-                  <div className="col-span-2 p-6 rounded-2xl bg-gradient-to-br from-white/[0.04] to-transparent border border-white/[0.04] backdrop-blur-sm relative overflow-hidden">
-                    <div className="text-xl font-bold text-white mb-1">Production-Ready</div>
-                    <div className="text-sm text-zinc-500">Deployed and serving real users every day.</div>
-                  </div>
+                <div className="grid grid-cols-2 gap-4 relative">
+                  {/* Floating Elements overlay */}
+                  <motion.div
+                    animate={{ y: [0, -8, 0], rotate: [0, 2, 0] }}
+                    transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' as const }}
+                    className="absolute -top-12 -right-8 w-24 h-24 border border-white/[0.05] rounded-full pointer-events-none"
+                  />
+                  
+                  <motion.div
+                    whileHover={{ scale: 1.05, y: -4, backgroundColor: 'rgba(255,255,255,0.04)' }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                    className="p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06] backdrop-blur-md relative overflow-hidden group"
+                  >
+                    <div className="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-100 transition-opacity">
+                      <ArrowUpRight className="w-4 h-4 text-white" />
+                    </div>
+                    <div className="text-4xl font-bold text-white mb-1">15<span className="text-emerald-400">+</span></div>
+                    <div className="text-xs font-semibold uppercase tracking-wider text-zinc-500">Products Shipped</div>
+                  </motion.div>
+                  
+                  <motion.div
+                    whileHover={{ scale: 1.05, y: -4, backgroundColor: 'rgba(255,255,255,0.04)' }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                    className="p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06] backdrop-blur-md relative overflow-hidden group"
+                  >
+                    <div className="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-100 transition-opacity">
+                      <ArrowUpRight className="w-4 h-4 text-white" />
+                    </div>
+                    <div className="text-4xl font-bold text-white mb-1">100<span className="text-violet-400">%</span></div>
+                    <div className="text-xs font-semibold uppercase tracking-wider text-zinc-500">Custom Built</div>
+                  </motion.div>
+                  
+                  <motion.div
+                    whileHover={{ scale: 1.02, backgroundColor: 'rgba(255,255,255,0.03)' }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                    className="col-span-2 p-6 rounded-2xl bg-gradient-to-br from-white/[0.04] to-transparent border border-white/[0.06] backdrop-blur-md relative overflow-hidden group"
+                  >
+                    {/* Animated pulse indicator */}
+                    <div className="absolute top-6 right-6 flex items-center justify-center">
+                      <span className="absolute inline-flex h-4 w-4 animate-ping rounded-full bg-emerald-400 opacity-20"></span>
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+                    </div>
+
+                    <div className="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">Production-Ready</div>
+                    <div className="text-sm text-zinc-400 leading-relaxed">Deployed and serving real users every day. Built for scale, security, and performance.</div>
+                  </motion.div>
                 </div>
               </FadeIn>
             </div>
@@ -149,9 +182,9 @@ export default function StudioClient({ projects }: StudioClientProps) {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* =================================================================== */}
       {/* FULL CATALOG                                                      */}
-      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* =================================================================== */}
       <section className="px-6 py-24 bg-[#0A0A0C] border-t border-white/[0.04]">
         <div className="mx-auto max-w-[1400px]">
 

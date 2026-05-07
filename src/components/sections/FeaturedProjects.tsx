@@ -76,16 +76,27 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
           </FadeIn>
         </div>
 
-        <StaggerContainer staggerDelay={0.15} className="flex flex-col gap-24 md:gap-40">
+        <div className="flex flex-col gap-24 md:gap-40">
           {SHOWCASE_CONFIG.map((project) => {
             const isTextRight = !project.invert;
 
             return (
-              <StaggerItem key={project.slug}>
-                <div className={`flex flex-col gap-10 md:gap-16 ${isTextRight ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center`}>
+              <motion.div 
+                key={project.slug}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-100px' }}
+                className={`flex flex-col gap-10 md:gap-16 ${isTextRight ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center`}
+              >
                   
                   {/* Cinematic Massive Image Pane (65% Width) */}
-                  <div className="w-full lg:w-[65%] relative group">
+                  <motion.div 
+                    variants={{
+                      hidden: { opacity: 0, x: isTextRight ? -60 : 60, scale: 0.95 },
+                      visible: { opacity: 1, x: 0, scale: 1, transition: { type: 'spring', stiffness: 100, damping: 20, duration: 1.2 } }
+                    }}
+                    className="w-full lg:w-[65%] relative group"
+                  >
                     <Link href={`/projects/${project.slug}`} className="block relative">
                       <motion.div 
                         whileHover={{ scale: 1.02, y: -4 }}
@@ -103,10 +114,16 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
                         />
                       </motion.div>
                     </Link>
-                  </div>
+                  </motion.div>
 
                   {/* Context Pane (35% Width) */}
-                  <div className="w-full lg:w-[35%] flex flex-col justify-center">
+                  <motion.div 
+                    variants={{
+                      hidden: { opacity: 0, x: isTextRight ? 60 : -60, filter: 'blur(8px)' },
+                      visible: { opacity: 1, x: 0, filter: 'blur(0px)', transition: { type: 'spring', stiffness: 100, damping: 20, duration: 1.2, delay: 0.2 } }
+                    }}
+                    className="w-full lg:w-[35%] flex flex-col justify-center"
+                  >
                     {/* Product Type Badge */}
                     <div className="mb-4">
                       <span className={`text-[10px] uppercase tracking-wider font-semibold px-3 py-1.5 rounded-full ${
@@ -127,11 +144,18 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
                     </p>
 
                     <div className="flex flex-col gap-3 mb-12">
-                      {project.capabilities.map((cap) => (
-                         <div key={cap} className="flex items-center gap-3 text-[13px] text-zinc-300 font-medium">
+                      {project.capabilities.map((cap, capIdx) => (
+                         <motion.div 
+                           key={cap} 
+                           initial={{ opacity: 0, x: -10 }}
+                           whileInView={{ opacity: 1, x: 0 }}
+                           viewport={{ once: true }}
+                           transition={{ delay: 0.5 + capIdx * 0.1, duration: 0.5 }}
+                           className="flex items-center gap-3 text-[13px] text-zinc-300 font-medium"
+                         >
                            <div className="w-1.5 h-1.5 rounded-full bg-white/40" />
                            {cap}
-                         </div>
+                         </motion.div>
                       ))}
                     </div>
 
@@ -147,13 +171,12 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
                         </motion.button>
                       </Link>
                     </div>
-                  </div>
+                  </motion.div>
 
-                </div>
-              </StaggerItem>
+              </motion.div>
             );
           })}
-        </StaggerContainer>
+        </div>
 
         <div className="mt-40 text-center pt-16 border-t border-white/[0.04]">
           <Link href="/studio" className="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors">

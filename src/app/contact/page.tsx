@@ -141,10 +141,10 @@ export default function ContactPage() {
                     <select id="budget" name="budget" value={formData.budget} onChange={handleChange}
                       className="w-full rounded-lg border border-white/[0.08] bg-[#1C1C1F] px-4 py-3 text-sm text-white transition-colors focus:border-white/[0.15] focus:outline-none">
                       <option value="" className="bg-[#0D0D0F]">Select budget</option>
-                      <option value="5k-15k" className="bg-[#0D0D0F]">$5,000 - $15,000</option>
-                      <option value="15k-50k" className="bg-[#0D0D0F]">$15,000 - $50,000</option>
-                      <option value="50k-100k" className="bg-[#0D0D0F]">$50,000 - $100,000</option>
-                      <option value="100k+" className="bg-[#0D0D0F]">$100,000+</option>
+                      <option value="0-5k" className="bg-[#0D0D0F]">$0 - $5,000 / 0 - 600,000 ETB</option>
+                      <option value="5k-15k" className="bg-[#0D0D0F]">$5,000 - $15,000 / 600,000 - 1.8M ETB</option>
+                      <option value="15k-50k" className="bg-[#0D0D0F]">$15,000 - $50,000 / 1.8M - 6.0M ETB</option>
+                      <option value="50k+" className="bg-[#0D0D0F]">$50,000+ / 6.0M+ ETB</option>
                     </select>
                   </div>
                 </div>

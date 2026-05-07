@@ -58,9 +58,9 @@ export default function GeometricDivider({ variant = 'a' }: GeometricDividerProp
   );
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════ */
+/* =========================================================================== */
 /* VARIANT A — "Why Businesses Choose Us" — below CoreCapabilities           */
-/* ═══════════════════════════════════════════════════════════════════════════ */
+/* =========================================================================== */
 function ContentVariantA() {
   const stats = [
     { value: '3x', label: 'Faster Than Agencies', desc: 'AI-augmented development means your platform ships in weeks, not months.' },
@@ -96,7 +96,7 @@ function ContentVariantA() {
               variants={fadeSlideIn}
               className="flex items-start gap-5 group"
             >
-              <div className="shrink-0 flex h-14 w-14 items-center justify-center rounded-xl bg-white/[0.03] border border-white/[0.06] group-hover:bg-white/[0.06] group-hover:border-white/[0.1] transition-colors">
+              <div className="shrink-0 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-white/[0.04] to-transparent border border-white/[0.08] shadow-[0_0_15px_rgba(255,255,255,0.02)] group-hover:bg-white/[0.08] group-hover:border-white/[0.15] group-hover:scale-110 group-hover:shadow-[0_0_25px_rgba(255,255,255,0.05)] transition-all duration-300">
                 <span className="text-xl font-bold text-white tracking-tighter">{stat.value}</span>
               </div>
               <div>
@@ -162,9 +162,9 @@ function ContentVariantA() {
   );
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════ */
+/* =========================================================================== */
 /* VARIANT B — "From Addis to the World" — below FeaturedProjects           */
-/* ═══════════════════════════════════════════════════════════════════════════ */
+/* =========================================================================== */
 function ContentVariantB() {
   const pillars = [
     { icon: '◆', title: 'Enterprise Grade', text: 'Built for businesses that need reliability. Our platforms handle thousands of users and never cut corners on security.' },
@@ -222,13 +222,16 @@ function ContentVariantB() {
             key={pillar.title}
             custom={3 + i}
             variants={fadeSlideUp}
-            className={`p-8 flex flex-col group hover:bg-white/[0.02] transition-colors duration-500 ${
+            className={`p-8 flex flex-col group relative overflow-hidden transition-all duration-500 hover:bg-white/[0.03] hover:z-10 ${
               i < 3 ? 'border-b sm:border-b-0 sm:border-r border-white/[0.04]' : ''
             } ${i < 2 ? 'sm:border-b lg:border-b-0' : ''}`}
+            whileHover={{ scale: 1.02, y: -4 }}
           >
-            <span className="text-2xl mb-5 opacity-30 group-hover:opacity-60 transition-opacity">{pillar.icon}</span>
-            <h3 className="text-[15px] font-bold text-white mb-3">{pillar.title}</h3>
-            <p className="text-[13px] text-zinc-500 leading-relaxed">{pillar.text}</p>
+            {/* Hover Glow */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/[0.08] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <span className="relative text-3xl mb-5 text-white/40 group-hover:text-white transition-colors duration-500">{pillar.icon}</span>
+            <h3 className="relative text-[16px] font-bold text-white mb-3 tracking-tight">{pillar.title}</h3>
+            <p className="relative text-[14px] text-zinc-400 leading-relaxed">{pillar.text}</p>
           </motion.div>
         ))}
       </div>

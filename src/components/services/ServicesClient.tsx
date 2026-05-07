@@ -90,9 +90,9 @@ export default function ServicesClient({ projects }: ServicesClientProps) {
   return (
     <div className="min-h-screen">
 
-      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* =================================================================== */}
       {/* HERO                                                              */}
-      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* =================================================================== */}
       <section ref={heroRef} className="relative px-6 pt-40 pb-24 overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-gradient-to-br from-violet-500/8 via-white/[0.02] to-indigo-500/8 blur-[140px] rounded-full pointer-events-none" />
 
@@ -129,9 +129,9 @@ export default function ServicesClient({ projects }: ServicesClientProps) {
         </motion.div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* =================================================================== */}
       {/* TRUST SIGNALS — Geometric Bento with Stats                        */}
-      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* =================================================================== */}
       <section className="px-6 py-24 border-t border-white/[0.04] relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-gradient-to-br from-emerald-500/5 via-transparent to-cyan-500/5 blur-[120px] rounded-full pointer-events-none" />
 
@@ -182,9 +182,9 @@ export default function ServicesClient({ projects }: ServicesClientProps) {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* =================================================================== */}
       {/* SERVICE OFFERINGS — Bento Grid                                    */}
-      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* =================================================================== */}
       <section className="px-6 py-24 border-t border-white/[0.04]">
         <div className="mx-auto max-w-[1400px]">
           <FadeIn>
@@ -204,11 +204,19 @@ export default function ServicesClient({ projects }: ServicesClientProps) {
               return (
                 <StaggerItem key={service.title}>
                   <motion.div whileHover={{ y: -4 }} transition={SPRING}>
-                    <GlassCard className="p-8 h-full flex flex-col hover:border-white/[0.12] transition-colors">
+                    <GlassCard className="p-8 h-full flex flex-col hover:border-white/[0.15] transition-colors relative overflow-hidden group">
+                      {/* Geometric SVG Background */}
+                      <div className="absolute -right-12 -top-12 opacity-[0.02] group-hover:opacity-[0.05] transition-opacity duration-700 pointer-events-none">
+                        <svg viewBox="0 0 100 100" className="w-48 h-48 rotate-12">
+                           <path d="M50 10 L90 50 L50 90 L10 50 Z" fill="none" stroke="currentColor" strokeWidth="1" />
+                           <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 4" />
+                        </svg>
+                      </div>
+
                       <motion.div
-                        whileHover={{ rotate: [0, -5, 5, 0], scale: 1.1 }}
+                        whileHover={{ rotate: [0, -5, 5, 0], scale: 1.15 }}
                         transition={{ duration: 0.5 }}
-                        className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-white/[0.06] to-transparent border border-white/[0.06]"
+                        className="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-white/[0.08] to-transparent border border-white/[0.08] group-hover:border-white/[0.15] group-hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] transition-all z-10 relative"
                       >
                         <Icon className="h-6 w-6 text-white" />
                       </motion.div>
@@ -248,9 +256,9 @@ export default function ServicesClient({ projects }: ServicesClientProps) {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* =================================================================== */}
       {/* THE PROCESS                                                       */}
-      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* =================================================================== */}
       <section className="px-6 py-24 border-t border-white/[0.04]">
         <div className="mx-auto max-w-[1400px]">
           <FadeIn>
@@ -260,14 +268,16 @@ export default function ServicesClient({ projects }: ServicesClientProps) {
             </p>
           </FadeIn>
 
-          <StaggerContainer staggerDelay={0.12} className="grid gap-0 md:grid-cols-4 border border-white/[0.04] rounded-2xl overflow-hidden">
+          <StaggerContainer staggerDelay={0.12} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {processSteps.map((step, idx) => (
-              <StaggerItem key={step.step}>
+              <StaggerItem key={step.step} className="h-full">
                 <motion.div
-                  whileHover={{ backgroundColor: 'rgba(255,255,255,0.03)' }}
-                  transition={{ duration: 0.3 }}
-                  className={`p-8 h-full flex flex-col ${idx < 3 ? 'md:border-r border-b md:border-b-0 border-white/[0.04]' : ''} group`}
+                  whileHover={{ backgroundColor: 'rgba(255,255,255,0.03)', scale: 1.02, y: -4 }}
+                  transition={{ duration: 0.4, type: 'spring', stiffness: 300, damping: 20 }}
+                  className={`p-8 h-full flex flex-col relative overflow-hidden group border border-white/[0.04] bg-[#161618] rounded-xl`}
                 >
+                  {/* Background glow on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <motion.span
                     initial={{ opacity: 0, scale: 0.5 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -286,9 +296,9 @@ export default function ServicesClient({ projects }: ServicesClientProps) {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* =================================================================== */}
       {/* PROOF — Project Thumbnails                                       */}
-      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* =================================================================== */}
       <section className="px-6 py-24 border-t border-white/[0.04]">
         <div className="mx-auto max-w-[1400px]">
           <FadeIn>
@@ -328,9 +338,9 @@ export default function ServicesClient({ projects }: ServicesClientProps) {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* =================================================================== */}
       {/* CTA                                                               */}
-      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* =================================================================== */}
       <section className="px-6 py-32 border-t border-white/[0.04] relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-gradient-to-br from-violet-500/8 via-white/[0.03] to-indigo-500/8 blur-[120px] rounded-full pointer-events-none animate-glow-pulse" />
         

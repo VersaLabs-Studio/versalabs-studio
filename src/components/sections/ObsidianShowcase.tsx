@@ -51,9 +51,12 @@ export default function ObsidianShowcase() {
         {/* IMAX Container */}
         <Link href="/projects/obsidian-erp-v3.0" className="block group">
           <motion.div
-            whileHover={{ scale: 1.005 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 30 }}
-            className="relative w-full aspect-[16/9] md:aspect-[21/9] rounded-2xl overflow-hidden border border-white/[0.06] shadow-2xl shadow-violet-500/5"
+            initial={{ opacity: 0, scale: 0.95, y: 40 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ type: 'spring', stiffness: 200, damping: 30, duration: 1.2 }}
+            whileHover={{ scale: 1.01 }}
+            className="relative w-full aspect-[4/3] sm:aspect-[16/9] md:aspect-[21/9] rounded-2xl overflow-hidden border border-white/[0.06] shadow-2xl shadow-violet-500/5"
           >
             {/* Parallax Image */}
             <motion.div
@@ -77,17 +80,17 @@ export default function ObsidianShowcase() {
             />
 
             {/* Content Overlay */}
-            <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-14 z-10">
+            <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-8 md:p-14 z-10">
               {/* Floating Feature Pills */}
-              <div className="hidden md:flex flex-wrap gap-2 mb-8">
+              <div className="hidden sm:flex flex-wrap gap-2 mb-4 md:mb-8">
                 {FEATURES.map((feat) => (
                   <motion.span
                     key={feat.label}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+                    whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.3 + feat.delay, duration: 0.5 }}
-                    className="px-4 py-2 rounded-full bg-white/[0.06] backdrop-blur-xl border border-white/[0.1] text-[12px] font-medium text-white/80"
+                    transition={{ delay: 0.4 + feat.delay, duration: 0.8, type: 'spring' }}
+                    className="px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-white/[0.06] backdrop-blur-xl border border-white/[0.1] text-[10px] md:text-[12px] font-medium text-white/80"
                   >
                     {feat.label}
                   </motion.span>
@@ -96,15 +99,15 @@ export default function ObsidianShowcase() {
 
               {/* Title & CTA */}
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
+                whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.2, duration: 0.7 }}
+                transition={{ delay: 0.3, duration: 1, type: 'spring', stiffness: 100 }}
               >
-                <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-white mb-3">
+                <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-white mb-2 md:mb-3">
                   Obsidian ERP
                 </h2>
-                <p className="text-[15px] md:text-lg text-zinc-300 max-w-xl mb-6 leading-relaxed">
+                <p className="text-[13px] sm:text-[15px] md:text-lg text-zinc-300 max-w-xl mb-4 md:mb-6 leading-relaxed line-clamp-2 md:line-clamp-none">
                   Run your entire business from one place. Sales, inventory, manufacturing, 
                   and accounting — connected in a single platform.
                 </p>
