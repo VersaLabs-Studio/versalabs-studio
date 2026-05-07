@@ -64,6 +64,7 @@ export interface ProjectEntry {
   heroGradient: string; // CSS gradient classes for card accent
   thumbnail?: string; // Specific image path for studio card display
   imageDir?: string; // Override directory name in public/ for image discovery (e.g. 'Oskaz Import' for oskaz-ecommerce)
+  productType: 'saas' | 'client-project' | 'internal'; // Controls CTA messaging: SaaS = "Deploy Now", Client = "We can build this for you", Internal = studio tool
 
   // ── Detail page fields ──
   description: string; // Full 3-5 sentence project description
@@ -105,9 +106,9 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
   {
     slug: "threatmatrix-ai",
     title: "ThreatMatrix AI",
-    subtitle: "AI-Powered Cyber Threat Intelligence Platform",
+    subtitle: "AI-Powered Cybersecurity Command Center",
     summary:
-      "Your enterprise security command center. Real-time threat detection, intelligent alerts, and AI-driven analysis — protecting critical infrastructure at national scale.",
+      "A security platform that watches your network 24/7, detects threats in real time, and alerts your team before damage is done — powered by three AI models working together.",
     category: "Cybersecurity",
     tags: ["AI/ML", "Cybersecurity", "Real-Time", "Enterprise"],
     year: "2026",
@@ -116,6 +117,7 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
     githubUrl: "https://github.com/VersaLabs-Studio",
     heroGradient: "from-red-500/20 via-transparent to-orange-500/10",
     thumbnail: "/ThreatMatrix AI/Mockups/threatmatrix-ai-4.png",
+    productType: "saas",
 
     description:
       "ThreatMatrix AI is a proprietary cyber-security command center delivering real-time network threat detection and automated intelligence enrichment. Designed for government agencies, financial institutions, and telecom operators, it provides enterprise-grade protection with an immersive war-room interface that enables security teams to detect, investigate, and neutralize threats before they cause damage.",
@@ -236,9 +238,9 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
   {
     slug: "obsidian-erp-v3.0",
     title: "Obsidian ERP v3.0",
-    subtitle: "Enterprise Resource Planning — Built for Global Scale",
+    subtitle: "All-in-One Business Management Platform",
     summary:
-      "The all-in-one business management platform. From customer onboarding to final invoice, Obsidian unifies your entire operation — CRM, sales, manufacturing, inventory, and accounting — in a single seamless system.",
+      "Run your entire business from one place. Obsidian connects your sales, customers, inventory, manufacturing, and accounting into a single system — so nothing falls through the cracks.",
     category: "ERP",
     tags: ["ERP", "Enterprise", "SaaS", "Global"],
     year: "2026",
@@ -246,6 +248,7 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
     githubUrl: "https://github.com/VersaLabs-Studio",
     heroGradient: "from-violet-500/20 via-transparent to-indigo-500/10",
     thumbnail: "/Obsidian ERP/Mockups/New folder/obsidian-erp-2 (2).png",
+    productType: "saas",
 
     description:
       "Obsidian v3.0 is the ERP system that grows with your business. Designed for organizations of any size across any industry, it delivers complete lead-to-cash automation, real-time operational visibility, and integrated financial control. With clients spanning printing, import-export, and manufacturing sectors, Obsidian eliminates data silos and manual processes, giving leaders a single dashboard for every critical business function.",
@@ -360,16 +363,18 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
   {
     slug: "pana-web",
     title: "Pana Web",
-    subtitle: "Premium Corporate Web Presence",
+    subtitle: "Premium Corporate Website",
     summary:
-      "A stunning, conversion-optimized corporate website that transforms visitors into clients. Modern design meets strategic content architecture to showcase your brand at the highest level.",
+      "A professional website designed to make your brand look its best online. Fast, mobile-friendly, and built to turn visitors into paying customers.",
     category: "Corporate Web",
     tags: ["Corporate", "Web Design", "CMS"],
     year: "2026",
     status: "Production",
+    liveUrl: "https://pana-web-nine.vercel.app/",
     githubUrl: "https://github.com/VersaLabs-Studio",
     heroGradient: "from-emerald-500/20 via-transparent to-teal-500/10",
     thumbnail: "/Pana Web/Mockups/160shots_so.png",
+    productType: "client-project",
 
     description:
       "Pana Web is a premium corporate web presence crafted to elevate brand perception and drive client acquisition. Featuring responsive design, strategic content placement, and seamless navigation, it transforms your digital footprint into a powerful business development tool that works around the clock.",
@@ -427,17 +432,19 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
   {
     slug: "oskaz-ecommerce",
     title: "OSKAZ E-Commerce",
-    subtitle: "Enterprise Digital Commerce Platform",
+    subtitle: "Complete Online Store Platform",
     summary:
-      "A full-featured digital storefront enabling businesses to sell online with enterprise-grade security, real-time inventory sync, and a seamless checkout experience that converts browsers into buyers.",
+      "A powerful online store that lets businesses sell products with secure payments, live inventory tracking, and a smooth checkout that turns browsers into buyers.",
     category: "E-Commerce",
     tags: ["E-Commerce", "Enterprise", "Retail"],
     year: "2026",
     status: "Production",
+    liveUrl: "https://oskazimport.com/",
     githubUrl: "https://github.com/VersaLabs-Studio",
     heroGradient: "from-blue-500/20 via-transparent to-cyan-500/10",
     thumbnail: "/Oskaz Import/Mockups/937shots_so.png",
     imageDir: "Oskaz Import",
+    productType: "client-project",
 
     description:
       "OSKAZ E-Commerce is a comprehensive digital commerce solution built for OSKAZ's enterprise operations spanning institutional and individual customers across Ethiopia. The platform implements Domain-Driven Design with four bounded contexts managing product catalogs, shopping carts, order lifecycle, and user management — all backed by Frappe ERP for inventory and fulfillment, and secured by Clerk authentication.",
@@ -545,9 +552,9 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
   {
     slug: "fastpay",
     title: "FastPay ET Wallet",
-    subtitle: "Cross-Border Payment Mobile Application",
+    subtitle: "Send Money Home — Fast & Secure",
     summary:
-      "Send money home instantly. FastPay delivers lightning-fast cross-border transfers with real-time exchange rates, biometric security, and a mobile experience your customers will love.",
+      "A mobile app for sending money between the US and Ethiopia instantly. Real-time exchange rates, fingerprint security, and a beautiful experience built for the Ethiopian diaspora.",
     category: "Fintech",
     tags: ["Fintech", "Mobile", "Payments"],
     year: "2026",
@@ -556,6 +563,7 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
     githubUrl: "https://github.com/VersaLabs-Studio",
     heroGradient: "from-green-500/20 via-transparent to-emerald-500/10",
     thumbnail: "/FastPay/Mockups/228shots_so.png",
+    productType: "client-project",
 
     description:
       "FastPay ET Wallet is a production-ready mobile application designed to facilitate seamless cross-border payments between the United States and Ethiopia. Built for FastPay LLC (MSB Licensed, NMLS #2327896), this application delivers a pixel-perfect user experience with 60fps UI-thread animations, comprehensive Zustand state management, and strict Domain-Driven Design across five core business domains — Auth, Wallet, Transaction, Contact, and Notification.",
@@ -672,9 +680,9 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
   {
     slug: "pana-sport",
     title: "Pana Sports",
-    subtitle: "National-Scale Ethiopian Football Platform",
+    subtitle: "Ethiopia's Football Hub",
     summary:
-      "The definitive Ethiopian football experience. Live scores, league standings, team profiles, and bilingual content — serving fans, clubs, and broadcasters at national scale.",
+      "The go-to platform for Ethiopian football. Live scores, league tables, team profiles, and news — all in English and Amharic, serving fans, clubs, and media across the country.",
     category: "Sports",
     tags: ["Sports", "Real-Time", "Media"],
     year: "2026",
@@ -683,6 +691,7 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
     githubUrl: "https://github.com/VersaLabs-Studio",
     heroGradient: "from-amber-500/20 via-transparent to-yellow-500/10",
     thumbnail: "/Pana Sport/Mockups/562shots_so.png",
+    productType: "client-project",
 
     description:
       "Pana Sports is VersaLabs' flagship public-facing product — a comprehensive digital platform serving the Ethiopian football ecosystem. It delivers real-time match tracking, league standings, team and player profiles, and a bilingual (English/Amharic) content management system. Covering Premier League, Ethiopian Cup, Higher League, and Women's League, it serves fans, club administrators, league officials, and media broadcasters at national scale.",
@@ -803,16 +812,18 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
   {
     slug: "pavillion-360",
     title: "Pavilion360 V2.0",
-    subtitle: "Data-Driven Event Production Platform with CMS & CRM",
+    subtitle: "Event Production Platform with Built-in CRM",
     summary:
-      "Full-stack event production platform with 8 CMS content modules, integrated quote-to-lead CRM, and Supabase PostgreSQL with Row Level Security — transformed from static marketing site to data-driven enterprise platform.",
+      "A complete platform for event production companies. Manage your services, rental equipment, client quotes, and leads — all from one dashboard with a stunning public website.",
     category: "Events",
     tags: ["Events", "CMS", "CRM", "Enterprise"],
     year: "2026",
     status: "Production",
+    liveUrl: "https://www.pavilion360.events/",
     githubUrl: "https://github.com/VersaLabs-Studio",
     heroGradient: "from-purple-500/20 via-transparent to-pink-500/10",
     thumbnail: "/Pavillion360/Mockups/610shots_so.png",
+    productType: "client-project",
 
     description:
       "Pavilion360 V2.0 represents a complete architectural transformation of a static marketing website into a fully data-driven, enterprise-grade platform with an integrated CMS and lightweight CRM. Built for a premium event production company specializing in audio-visual production and rental equipment, it features 8 comprehensive content modules, quote basket functionality, lead management, and Supabase PostgreSQL with Row Level Security.",
@@ -927,9 +938,9 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
   {
     slug: "printonline-et",
     title: "PrintOnline.et",
-    subtitle: "Enterprise E-Commerce for Ethiopian Printing Services",
+    subtitle: "Online Ordering for Printing Services",
     summary:
-      "Production e-commerce platform with matrix-based pricing engine, Chapa payment gateway integration, 8-step order status pipeline, and bilingual storefront deployed for national printing operations.",
+      "Order printing services online with instant pricing, secure payments via Chapa, and real-time order tracking — from business cards to large-format prints, delivered across Ethiopia.",
     category: "E-Commerce",
     tags: ["E-Commerce", "Print", "Fintech", "Enterprise"],
     year: "2026",
@@ -938,6 +949,7 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
     githubUrl: "https://github.com/VersaLabs-Studio",
     heroGradient: "from-orange-500/20 via-transparent to-red-500/10",
     thumbnail: "/PrintOnline-ET/Mockups/100shots_so.png",
+    productType: "client-project",
 
     description:
       "PrintOnline.et is an enterprise-grade e-commerce platform built for the Ethiopian printing industry, empowering Pana Promotion to offer seamless online ordering for 15+ printing products. It features a matrix-based pricing engine replacing additive models, Chapa payment gateway integration for ETB transactions, an 8-step order status pipeline with email notifications, and a comprehensive admin CMS — transitioning from manual cash-on-delivery to a fully digital commerce operation.",
@@ -1052,9 +1064,9 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
   {
     slug: "auroqueue",
     title: "AuroQueue",
-    subtitle: "Enterprise Queue Management System",
+    subtitle: "Smart Queue Management System",
     summary:
-      "Real-time queue orchestration platform for hospitals, banks, and government offices, featuring self-service kiosks, multi-tenant Docker deployment, and Traefik load balancing.",
+      "No more long lines. AuroQueue manages walk-in queues for hospitals, banks, and offices with self-service kiosks, live dashboards, and performance analytics — all in real time.",
     category: "SaaS",
     tags: ["SaaS", "Real-Time", "Multi-Tenant", "Healthcare"],
     year: "2026",
@@ -1062,6 +1074,7 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
     githubUrl: "https://github.com/VersaLabs-Studio",
     heroGradient: "from-sky-500/20 via-transparent to-blue-500/10",
     thumbnail: "/AuroQueue/Mockups/628shots_so.png",
+    productType: "saas",
 
     description:
       "AuroQueue is an enterprise-grade Queue Management System architected for operational excellence in hospitals, banks, government offices, and enterprise organizations. It delivers real-time queue orchestration across three components — a Hapi.js API server, a Next.js staff dashboard, and an Expo self-service kiosk — with multi-tenant Docker deployment and Traefik load balancing for horizontal scaling.",
@@ -1170,16 +1183,18 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
   {
     slug: "potentia",
     title: "Potentia",
-    subtitle: "Enterprise Bitcoin Mining Business Platform",
+    subtitle: "Bitcoin Mining Business Platform",
     summary:
-      "Three-phase Bitcoin mining business management platform — Learn, Own, Operate — with DDD service layer architecture, financial P&L tracking, tax depreciation schedules, and fleet health monitoring.",
+      "Everything you need to run a Bitcoin mining business — from learning the basics to tracking your fleet, managing finances, and calculating tax depreciation.",
     category: "Blockchain",
     tags: ["Blockchain", "Enterprise", "Analytics"],
     year: "2026",
     status: "MVP",
+    liveUrl: "https://potentia.digital",
     githubUrl: "https://github.com/VersaLabs-Studio",
     heroGradient: "from-yellow-500/20 via-transparent to-amber-500/10",
     thumbnail: "/Potentia/Mockups/335shots_so.png",
+    productType: "saas",
 
     description:
       "Potentia is an enterprise-grade Bitcoin mining business management platform that transforms mining operations from technical endeavors into professional enterprises. Built around three interconnected phases — Learn (education & certification), Own (equipment & asset management), and Operate (fleet monitoring & financial reporting) — it guides users through every stage of building a mining business with domain-driven service architecture.",
@@ -1286,25 +1301,27 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
   {
     slug: "live-addis",
     title: "Live Addis",
-    subtitle: "Real-Time Social Media Analytics Dashboard",
+    subtitle: "Official Website for Live Addis NGO",
     summary:
-      "Social media data aggregation and analytics platform for monitoring live events in Addis Ababa, with domain events, sentiment analysis, and customizable widget dashboards.",
-    category: "Analytics",
-    tags: ["Analytics", "Social Media", "Real-Time"],
+      "A clean, professional website built for Live Addis — a community-focused NGO based in Addis Ababa. Showcases the organization’s mission, programs, and impact with a modern, mobile-friendly design.",
+    category: "Corporate Web",
+    tags: ["Corporate", "Web Design", "NGO"],
     year: "2026",
-    status: "Development",
+    status: "Production",
+    liveUrl: "https://live-addis.vercel.app/",
     githubUrl: "https://github.com/VersaLabs-Studio",
     heroGradient: "from-pink-500/20 via-transparent to-rose-500/10",
     thumbnail: "/LiveAddis/Mockups/47shots_so.png",
+    productType: "client-project",
 
     description:
-      "Live Addis is a proprietary web platform that aggregates real-time social media data from Facebook and Twitter, provides analytics dashboards with sentiment scoring, and offers customizable widget-based interfaces for monitoring live events in Addis Ababa. The application follows a strict DDD approach with four bounded contexts communicating via domain events, deployed on Vercel with automated CI/CD.",
+      "Live Addis is a professional corporate website built for Live Addis, a community-focused NGO in Addis Ababa. The platform showcases the organization’s mission, ongoing programs, impact stories, and team — providing a polished digital presence that connects the NGO with supporters, partners, and the local community.",
     businessProblem:
-      "Event organizers and media outlets in Addis Ababa lack unified dashboards to monitor social media activity around live events in real-time, relying instead on manual platform-by-platform monitoring.",
+      "The NGO needed a modern, professional online presence to communicate their mission, share program updates, and attract supporters — replacing an outdated digital footprint that limited their reach and credibility.",
     architecturalSolution:
-      "A clean layered architecture (Presentation → Application → Domain → Infrastructure) with four bounded contexts: SocialIngestion, Analytics, UserDashboard, and Notification. External social APIs are isolated behind repository interfaces, and domain events (PostIngested, MetricCalculated) drive cross-context communication. SWR provides cache-aware data fetching with React Context for state.",
+      "A performant static website built with Next.js for optimal loading speeds and SEO. Server-side rendering ensures content is immediately available to search engines, while a clean component architecture keeps the codebase maintainable and easy to update as the organization grows.",
     systemFlow:
-      "External Social APIs (Facebook, Twitter) → SocialIngestion Context → Domain Events → Analytics Context (Sentiment, Trends) → UserDashboard Context → Notification Context (Threshold Alerts)",
+      "Visitor Arrival → Mission Discovery → Program Exploration → Team Overview → Contact / Get Involved",
 
     techStack: [
       {
@@ -1403,9 +1420,9 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
   {
     slug: "jarvis",
     title: "JARVIS Core v1.0",
-    subtitle: "Autonomous Software Engineering Orchestration Platform",
+    subtitle: "AI-Powered Development Automation",
     summary:
-      "Self-hosted autonomous SWE platform orchestrating multi-model LLM agents via OpenClaw gateway, with MCP integrations for GitHub, Vercel, Notion, and Gmail — deployed on Docker.",
+      "Our in-house AI assistant that automates development workflows — managing code, deployments, documentation, and communication across all our projects through intelligent AI agents.",
     category: "AI Infra",
     tags: ["AI Infra", "AI/ML", "DevOps", "Automation"],
     year: "2026",
@@ -1413,6 +1430,7 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
     githubUrl: "https://github.com/VersaLabs-Studio",
     heroGradient: "from-cyan-500/20 via-transparent to-teal-500/10",
     thumbnail: "/Jarvis/Mockups/175shots_so.png",
+    productType: "internal",
 
     description:
       "JARVIS Core is a self-hosted autonomous software engineering workflow system that orchestrates development tasks, automates code deployment pipelines, and scales for distributed enterprise operations. Built on OpenClaw as a self-hosted AI gateway with OpenRouter for unified multi-model LLM access, it integrates with GitHub, Vercel, Notion, Gmail, and VS Code via individual MCP (Model Context Protocol) servers — all containerized with Docker for portable, scalable deployment.",
@@ -1509,6 +1527,252 @@ export const PROJECT_DATABASE: ProjectEntry[] = [
       { id: "ADR-004", title: "Docker Containerization", status: "Accepted", rationale: "Portable, scalable deployment with easy rollback via snapshots." },
     ],
   },
+  // =========================================================================
+  // 13. UNLOCK ETHIOPIA POTENTIAL
+  // =========================================================================
+  {
+    slug: "unlock-ethiopia-potential",
+     title: "Unlock Ethiopian Potential",
+    subtitle: "Bitcoin Mining Summit 2025",
+    summary: "The official digital face for Ethiopia's premier Bitcoin Mining Summit. A premium, immersive event landing page showcasing speakers, partners, and the future of global hashing power.",
+    category: "Events",
+    tags: ["Events", "Blockchain", "Landing Page"],
+    year: "2025",
+    status: "Production",
+    liveUrl: "https://www.unlockethiopiapotential.com/",
+    heroGradient: "from-[#AF8F6F]/20 via-transparent to-[#74512D]/10",
+     thumbnail: "/Unlock Ethiopian Potential/Mockups/188shots_so.png",
+     imageDir: "Unlock Ethiopian Potential",
+    productType: "client-project",
+
+    description: "Unlock Ethiopia Potential is the official platform for Ethiopia's premier Bitcoin Mining Summit. Built as an immersive, high-performance web experience, it highlights the nation's rising status as a global destination for Bitcoin mining. The platform features an interactive agenda, speaker profiles, a comprehensive partner showcase, and data-driven insights into energy allocation and hashrate metrics.",
+    businessProblem: "A premier international summit requires a digital presence that reflects its magnitude. The organizers needed a premium, performant platform capable of handling international traffic, presenting complex industry statistics elegantly, and driving ticket registrations without relying on generic event templates.",
+    architecturalSolution: "A component-based React SPA built with Vite for rapid loading and Framer Motion for cinematic scroll reveals. The architecture separates the agenda, vital statistics, and sponsor grids into isolated, easily updatable components. The routing is handled entirely client-side for zero-latency navigation, with a seamless handoff to Google Forms for registration processing.",
+    systemFlow: "Visitor Arrival → Immersive Hero Animation → Industry Statistics Reveal → Agenda/Speaker Exploration → Registration Redirect",
+
+    techStack: [
+      {
+        label: "Frontend",
+        items: [
+          { name: "React", version: "19+", purpose: "Component-based UI rendering" },
+          { name: "Vite", version: "6+", purpose: "Lightning-fast build tooling and HMR" },
+          { name: "React Router DOM", purpose: "Client-side SPA navigation" }
+        ]
+      },
+      {
+        label: "Styling & Animation",
+        items: [
+          { name: "Tailwind CSS", version: "4+", purpose: "Utility-first design system" },
+          { name: "Framer Motion", version: "12+", purpose: "Declarative scroll and layout animations" },
+          { name: "Flowbite", purpose: "Accessible Tailwind UI components" }
+        ]
+      }
+    ],
+
+    architecture: {
+      pattern: "Single-Page Application (SPA) with Client-Side Routing",
+      diagram: "Vite Bundler → React App Router → Shared UI Components (Hero, Teams, Vital-Info) → External Registration",
+      designPatterns: [
+        "Component-Based Architecture",
+        "Declarative Animation Logic",
+        "Mobile-First Responsive Grid"
+      ]
+    },
+
+    boundedContexts: [
+      { name: "Event Promotion", responsibility: "Hero, mission statement, and statistics", entities: ["StatisticCard", "HeroSection"] },
+      { name: "Schedule & People", responsibility: "Agenda timeline, speaker profiles, and sponsor grids", entities: ["Speaker", "Session", "Sponsor"] }
+    ],
+
+    schema: [
+      { name: "Event Content", description: "Static content structures powering the UI", keyFields: ["title", "description", "image_asset", "social_links"] }
+    ],
+
+    features: [
+      { title: "Cinematic Scroll Reveals", description: "Framer Motion powers smooth fade-ins, slide-ups, and floating background elements for a premium feel.", icon: "Sparkles" },
+      { title: "Dynamic Partner Grid", description: "Responsive showcase of 13+ global partner organizations with automated logo scaling and hover effects.", icon: "LayoutGrid" },
+      { title: "Vital Industry Statistics", description: "Animated data cards presenting Ethiopia's hashrate, energy allocation, and mining footprint.", icon: "BarChart3" },
+      { title: "Interactive Agenda", description: "Day-by-day timeline with speaker profiles, session descriptions, and integrated LinkedIn links.", icon: "Calendar" }
+    ],
+
+    adrs: [
+      { id: "ADR-001", title: "Vite + React SPA", status: "Accepted", rationale: "Static event content does not require SSR; SPA provides fastest possible intra-page navigation." },
+      { id: "ADR-002", title: "Framer Motion for Animations", status: "Accepted", rationale: "Declarative API simplifies complex scroll-triggered reveals compared to pure CSS." }
+    ]
+  },
+
+  // =========================================================================
+  // 14. MINAB CLOTHING
+  // =========================================================================
+  {
+    slug: "minab-clothing",
+    title: "Minab Clothing",
+    subtitle: "Premium Ethiopian Fashion E-Commerce",
+    summary: "A gallery-worthy digital storefront for contemporary Ethiopian fashion. Beautiful dark and light themes, smooth animations, and a complete shopping experience from browsing to checkout.",
+    category: "E-Commerce",
+    tags: ["E-Commerce", "Fashion", "Retail"],
+    year: "2025",
+    status: "Production",
+    liveUrl: "https://minab-clothing-fm7q.vercel.app/",
+    heroGradient: "from-[#8B4513]/20 via-transparent to-[#D2B48C]/10",
+     thumbnail: "/Minab/Mockups/524shots_so.png",
+     imageDir: "Minab",
+    productType: "client-project",
+
+    description: "Minab Clothing is a premium digital storefront designed to showcase contemporary Ethiopian fashion rooted in heritage craftsmanship. Built as a high-fidelity demonstration of enterprise-grade UI architecture, it delivers a flawless shopping experience with a dual-theme OKLCH color system, fluid Framer Motion transitions, and extreme modularity.",
+    businessProblem: "Fashion brands require more than just an 'add to cart' button; they need a digital environment that reflects the quality of their physical products. Standard templates often feel cheap and fail to provide the immersive, premium feel necessary for luxury or heritage fashion.",
+    architecturalSolution: "Built on Next.js App Router, the platform employs a strict three-tier architecture (Public, Customer, Admin) and an 'Extreme Modularization' pattern. It utilizes a custom Radix-inspired UI primitive library, ensuring perfect accessibility while maintaining complete design freedom. State is managed locally with a robust mock data layer for instant interaction feedback.",
+    systemFlow: "Discovery (Collections/Home) → Product Detail (SSG) → Cart Management → 3-Step Checkout Flow → Order Confirmation",
+
+    techStack: [
+      {
+        label: "Frontend",
+        items: [
+          { name: "Next.js", version: "15.5", purpose: "App Router, SSR/SSG" },
+          { name: "TypeScript", version: "5.8", purpose: "Strict mode schemas" },
+          { name: "Tailwind CSS", version: "3.4", purpose: "OKLCH design tokens" },
+          { name: "Framer Motion", version: "12.3", purpose: "Spring animations" }
+        ]
+      },
+      {
+        label: "Forms & State",
+        items: [
+          { name: "React Hook Form", version: "7.55", purpose: "Checkout and account forms" },
+          { name: "Sonner", version: "2.0", purpose: "Toast notification system" }
+        ]
+      }
+    ],
+
+    architecture: {
+      pattern: "Extreme Modularization Hybrid SSG",
+      diagram: "Next.js Pages → Shared UI Primitives → Feature Components → Centralized Mock Data Layer",
+      designPatterns: [
+        "Three-Tier Architecture",
+        "Schema-First (typefile.d.ts)",
+        "Strict Import Direction (ui → shared → feature)"
+      ]
+    },
+
+    boundedContexts: [
+      { name: "Shop", responsibility: "Product discovery, filtering, and detail pages", entities: ["Product", "Collection", "Category"] },
+      { name: "Account", responsibility: "Order history, wishlists, and shipping profiles", entities: ["Order", "Address", "WishlistItem"] },
+      { name: "Checkout", responsibility: "Cart totals, promo codes, and multi-step payment", entities: ["Cart", "CheckoutSession"] }
+    ],
+
+    schema: [
+      { name: "Product", description: "Fashion items with variations", keyFields: ["id", "name", "price", "colors", "sizes", "images"] },
+      { name: "Order", description: "Customer purchases", keyFields: ["id", "status", "total", "items", "shipping_address"] }
+    ],
+
+    features: [
+      { title: "OKLCH Dual Theme System", description: "Perceptually uniform color tokens provide perfect contrast ratios across both deep espresso dark mode and warm cream light mode.", icon: "Palette" },
+      { title: "Fluid Spring Animations", description: "Framer Motion powers staggered entrances, layout transitions, and interactive micro-animations for a native app feel.", icon: "Activity" },
+      { title: "Multi-Step Checkout", description: "A comprehensive mock checkout flow including shipping profiles, promo code validation, and order review.", icon: "CreditCard" },
+      { title: "Custom UI Primitives", description: "A proprietary, Radix-inspired component library ensuring accessibility without sacrificing the bespoke brand aesthetic.", icon: "Component" }
+    ],
+
+    adrs: [
+      { id: "ADR-001", title: "OKLCH Color Space", status: "Accepted", rationale: "Provides predictable, accessible color scaling across light/dark themes impossible with standard RGB/HSL." },
+      { id: "ADR-002", title: "Extreme Modularization", status: "Accepted", rationale: "Strict downward-only import rules prevent dependency cycles and enforce clean boundaries." }
+    ]
+  },
+
+  // =========================================================================
+  // 15. TIBEB
+  // =========================================================================
+  {
+    slug: "tibeb",
+    title: "Tibeb",
+    subtitle: "Traditional Habesha Clothing Platform",
+    summary: "Bridging centuries of Ethiopian artistry with modern digital commerce. A premium storefront with secure international payments, bringing traditional Habesha clothing to the global market.",
+    category: "E-Commerce",
+    tags: ["E-Commerce", "Cultural", "Retail"],
+    year: "2025",
+    status: "Production",
+    githubUrl: "https://github.com/VersaLabs-Studio",
+    heroGradient: "from-[#D4AF37]/20 via-transparent to-[#1C2526]/10",
+    thumbnail: "/Tibeb/Mockups/765shots_so.png",
+    imageDir: "Tibeb",
+    productType: "client-project",
+
+    description: "Tibeb is an enterprise-grade digital storefront celebrating the beauty of traditional Ethiopian Habesha clothing. Designed for high-end cultural fashion, it offers a seamless browsing experience for dresses, menswear, and couples' sets. The platform is architected with a tier-1 public interface for SEO-optimized discovery, transitioning to a secure, authenticated flow for cart management and checkout.",
+    businessProblem: "Traditional clothing artisans and retailers often lack the technical infrastructure to reach global diaspora markets. They require a platform that not only processes international payments securely but also presents their handcrafted products with the visual dignity they deserve.",
+    architecturalSolution: "Built on Next.js 15 App Router, Tibeb utilizes a dual-tier architecture. The public storefront is highly optimized for read-only discovery, while Clerk authentication protects the cart and checkout flows. Supabase PostgreSQL serves as the primary data store, integrated via a strict schema-first Factory Pattern. Payments are processed securely via Stripe Elements.",
+    systemFlow: "Public Browsing (SSR/SSG) → Clerk Authentication (for Cart) → Supabase Real-time Cart → Stripe Checkout → Order Fulfillment",
+
+    techStack: [
+      {
+        label: "Frontend & Auth",
+        items: [
+          { name: "Next.js", version: "15.x", purpose: "App Router and Server Actions" },
+          { name: "Clerk", version: "6.x", purpose: "Authentication and session management" },
+          { name: "Tailwind CSS", version: "4.x", purpose: "Utility styling with OKLCH tokens" }
+        ]
+      },
+      {
+        label: "Backend & Payments",
+        items: [
+          { name: "Supabase", version: "2.x", purpose: "PostgreSQL database and storage" },
+          { name: "Stripe", version: "18.x", purpose: "Secure payment processing" }
+        ]
+      }
+    ],
+
+    architecture: {
+      pattern: "Tier 1 Public Interface + Authenticated Backend",
+      diagram: "Next.js Public Storefront → Clerk Auth Wall → Protected Cart/Checkout → Stripe + Supabase PostgreSQL",
+      designPatterns: [
+        "Schema-First Database Types",
+        "Factory Pattern CRUD",
+        "Dual API Namespace (Public vs Protected)",
+        "Query Key Factory"
+      ]
+    },
+
+    boundedContexts: [
+      { name: "Storefront", responsibility: "SEO-optimized product catalog and cultural content", entities: ["Product", "Category", "Review"] },
+      { name: "Commerce", responsibility: "Session-based carts, checkout, and payment intents", entities: ["Cart", "CartItem", "Transaction", "Order"] }
+    ],
+
+    schema: [
+      { name: "products", description: "Catalog items with stock and category", keyFields: ["id", "name", "price", "category", "stock"] },
+      { name: "transactions", description: "Stripe payment records", keyFields: ["id", "order_id", "stripe_payment_intent_id", "status"] }
+    ],
+
+    features: [
+      { title: "Stripe Checkout Integration", description: "Secure, PCI-compliant payment processing supporting international cards via Stripe Elements.", icon: "CreditCard" },
+      { title: "Clerk Auth Wall", description: "Frictionless browsing transitions into secure authentication only when users interact with the cart or checkout.", icon: "Lock" },
+      { title: "Supabase Real-time Cart", description: "PostgreSQL-backed shopping cart that persists across devices for authenticated users.", icon: "ShoppingCart" },
+      { title: "Cultural Spotlight UI", description: "Premium, abstract geometric hero sections and glassmorphism elements that elevate the brand aesthetic.", icon: "Sparkles" }
+    ],
+
+    adrs: [
+      { id: "ADR-001", title: "Dual API Namespace", status: "Accepted", rationale: "Strict separation of /api/public and /api/protected ensures sensitive mutation routes cannot be accessed accidentally." },
+      { id: "ADR-002", title: "Supabase + Stripe Stack", status: "Accepted", rationale: "Combines robust relational data integrity with enterprise-grade payment security." }
+    ]
+  }
+];
+
+// ---------------------------------------------------------------------------
+// CANONICAL PROJECT DISPLAY ORDER
+// ---------------------------------------------------------------------------
+
+const PROJECT_ORDER: string[] = [
+  'obsidian-erp-v3.0',
+  'threatmatrix-ai',
+  'jarvis',
+  'auroqueue',
+  'pana-sport',
+  'pavillion-360',
+  'printonline-et',
+  'oskaz-ecommerce',
+  'fastpay',
+  'unlock-ethiopia-potential',
+  'pana-web',
+  'potentia',
+  'live-addis',
+  'minab-clothing',
+  'tibeb',
 ];
 
 // ---------------------------------------------------------------------------
@@ -1520,11 +1784,13 @@ export function getProjectBySlug(slug: string): ProjectEntry | undefined {
 }
 
 export function getAllProjects(): ProjectEntry[] {
-  return PROJECT_DATABASE;
+  return PROJECT_ORDER
+    .map(slug => PROJECT_DATABASE.find(p => p.slug === slug)!)
+    .filter(Boolean);
 }
 
 export function getAllSlugs(): string[] {
-  return PROJECT_DATABASE.map((p) => p.slug);
+  return PROJECT_ORDER;
 }
 
 export function getProjectsByCategory(category: string): ProjectEntry[] {

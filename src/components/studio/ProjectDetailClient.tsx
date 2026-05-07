@@ -3,10 +3,11 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowLeft, ExternalLink, ArrowRight, ChevronDown, ChevronUp, ArrowUpRight } from 'lucide-react';
+import { ArrowLeft, ExternalLink, ArrowRight, X, Layers } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FadeIn, GlassCard, StaggerContainer, StaggerItem } from '@/components/ui/motion';
 import ProjectSlideshow from '@/components/ui/ProjectSlideshow';
+import ImageLightbox from '@/components/ui/ImageLightbox';
 import type { DetailProjectData } from '@/app/projects/[slug]/page';
 import type { SimilarProject } from '@/app/projects/[slug]/page';
 import type { TechLayer, BoundedContext, SchemaTable, Feature, ADRRecord } from '@/config/project-database';
@@ -16,21 +17,36 @@ interface Props {
   similarProjects: SimilarProject[];
 }
 
+const INITIAL_GALLERY_COUNT = 6;
+
 export default function ProjectDetailClient({ project, similarProjects }: Props) {
   const [showTechnical, setShowTechnical] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [showAllGallery, setShowAllGallery] = useState(false);
 
   const allGalleryImages = [...project.mockupImages, ...project.screenshotImages];
+  const visibleGallery = showAllGallery ? allGalleryImages : allGalleryImages.slice(0, INITIAL_GALLERY_COUNT);
+  const hasMoreImages = allGalleryImages.length > INITIAL_GALLERY_COUNT;
+
+  const openLightbox = (index: number) => {
+    setLightboxIndex(index);
+    setLightboxOpen(true);
+  };
+
+  // Product-type-aware CTA text
+  const isSaaS = project.productType === 'saas';
+  const primaryCTA = isSaaS ? 'Deploy This Platform' : 'Build Something Like This';
+  const secondaryCTA = isSaaS ? 'Schedule a Demo' : 'Get a Custom Version';
 
   return (
     <div className="min-h-screen bg-[#0A0A0C] pb-32">
 
-      {/* ═══════════════════════════════════════════════════════════════════ */}
-      {/* HERO HEADER                                                       */}
-      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* HERO HEADER */}
       <div className="w-full pt-32 pb-24 border-b border-white/[0.04] relative overflow-hidden">
         <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-gradient-to-b ${project.heroGradient} blur-[120px] rounded-full pointer-events-none opacity-40`} />
 
-        <div className="mx-auto max-w-5xl px-6 relative z-10">
+        <div className="mx-auto max-w-[1400px] px-6 relative z-10">
           <FadeIn>
             <Link href="/studio" className="inline-flex items-center gap-2 text-sm text-zinc-500 hover:text-white transition-colors mb-12">
               <ArrowLeft className="h-4 w-4" />
@@ -39,7 +55,7 @@ export default function ProjectDetailClient({ project, similarProjects }: Props)
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-center gap-3 mb-6 flex-wrap">
               <span className={`text-xs uppercase tracking-wider font-semibold px-3 py-1.5 rounded-sm bg-gradient-to-r ${project.heroGradient} border border-white/[0.06] text-white`}>
                 {project.category}
               </span>
@@ -49,6 +65,17 @@ export default function ProjectDetailClient({ project, similarProjects }: Props)
               <span className="text-xs font-medium text-emerald-400 border border-emerald-500/20 px-3 py-1.5 rounded-sm bg-emerald-500/10">
                 {project.status}
               </span>
+              {project.productType && (
+                <span className={`text-xs font-medium px-3 py-1.5 rounded-sm ${
+                  project.productType === 'saas' 
+                    ? 'text-blue-400 bg-blue-500/10 border border-blue-500/20'
+                    : project.productType === 'internal'
+                      ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/20'
+                      : 'text-violet-400 bg-violet-500/10 border border-violet-500/20'
+                }`}>
+                  {project.productType === 'saas' ? 'Deploy Ready' : project.productType === 'internal' ? 'Internal Tool' : 'Custom Built'}
+                </span>
+              )}
             </div>
           </FadeIn>
 
@@ -73,16 +100,14 @@ export default function ProjectDetailClient({ project, similarProjects }: Props)
                   <ExternalLink className="h-4 w-4" />
                 </a>
               )}
-              {project.githubUrl && (
-                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#1C1C1F] px-6 py-3 text-sm font-medium text-white transition-all hover:bg-[#27272A] hover:scale-[1.02]">
-                  View on GitHub
-                  <ArrowUpRight className="h-4 w-4" />
-                </a>
-              )}
+              <button onClick={() => setShowTechnical(true)}
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#1C1C1F] px-6 py-3 text-sm font-medium text-white transition-all hover:bg-[#27272A] hover:scale-[1.02]">
+                <Layers className="h-4 w-4" />
+                View Architecture
+              </button>
               <Link href="/contact"
                 className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-transparent px-6 py-3 text-sm font-medium text-zinc-400 transition-all hover:text-white hover:border-white/20">
-                Get This Platform
+                {primaryCTA}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
@@ -90,27 +115,24 @@ export default function ProjectDetailClient({ project, similarProjects }: Props)
         </div>
       </div>
 
-      <div className="mx-auto max-w-5xl px-6 pt-16">
+      <div className="mx-auto max-w-[1400px] px-6 pt-16">
 
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        {/* SLIDESHOW — Mockup Images                                     */}
-        {/* ═══════════════════════════════════════════════════════════════ */}
+        {/* SLIDESHOW */}
         {project.mockupImages.length > 0 && (
           <FadeIn delay={0.4}>
-            <div className="mb-24 rounded-2xl overflow-hidden shadow-2xl border border-white/[0.04]">
+            <div className="mb-24 max-w-[1200px] mx-auto rounded-2xl overflow-hidden shadow-2xl border border-white/[0.04]">
               <ProjectSlideshow
                 images={project.mockupImages}
                 title={project.title}
                 intervalMs={4500}
                 hoverOnly={false}
+                onImageClick={(idx) => openLightbox(idx)}
               />
             </div>
           </FadeIn>
         )}
 
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        {/* THE PROBLEM & SOLUTION — Business Narrative                   */}
-        {/* ═══════════════════════════════════════════════════════════════ */}
+        {/* PROBLEM & SOLUTION */}
         <StaggerContainer className="grid md:grid-cols-2 gap-12 mb-24">
           <StaggerItem>
             <div className="mb-6">
@@ -132,9 +154,7 @@ export default function ProjectDetailClient({ project, similarProjects }: Props)
           </StaggerItem>
         </StaggerContainer>
 
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        {/* KEY FEATURES — Non-Technical Showcase                         */}
-        {/* ═══════════════════════════════════════════════════════════════ */}
+        {/* KEY FEATURES */}
         <FadeIn>
           <div className="mb-24">
             <span className="text-[11px] uppercase tracking-widest font-semibold text-zinc-500 block mb-4">Capabilities</span>
@@ -157,9 +177,7 @@ export default function ProjectDetailClient({ project, similarProjects }: Props)
           </div>
         </FadeIn>
 
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        {/* INLINE CTA — Engagement Block                                 */}
-        {/* ═══════════════════════════════════════════════════════════════ */}
+        {/* INLINE CTA */}
         <FadeIn>
           <div className="mb-24 p-10 md:p-14 rounded-2xl bg-gradient-to-br from-[#141417] to-[#111113] border border-white/[0.06] relative overflow-hidden">
             <div className={`absolute top-0 right-0 w-[300px] h-[200px] bg-gradient-to-bl ${project.heroGradient} blur-[80px] opacity-30 pointer-events-none`} />
@@ -168,13 +186,16 @@ export default function ProjectDetailClient({ project, similarProjects }: Props)
                 Interested in {project.title}?
               </h3>
               <p className="text-[16px] text-zinc-400 mb-8 max-w-lg">
-                Whether you want to deploy this platform for your organization, customize it for your industry, or build something entirely new — we are ready to talk.
+                {isSaaS
+                  ? `Deploy ${project.title} for your organization, or let us customize it for your specific industry needs.`
+                  : `We built this for a client — and we can build something just like it (or better) for you. Tell us what you need.`
+                }
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/contact">
                   <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
                     className="flex items-center justify-center h-12 px-8 rounded-full bg-white text-black text-[15px] font-semibold transition-colors hover:bg-zinc-200">
-                    Schedule a Demo
+                    {secondaryCTA}
                   </motion.div>
                 </Link>
                 <Link href="/studio">
@@ -188,23 +209,22 @@ export default function ProjectDetailClient({ project, similarProjects }: Props)
           </div>
         </FadeIn>
 
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        {/* FULL GALLERY — Mockups + Screenshots                          */}
-        {/* ═══════════════════════════════════════════════════════════════ */}
+        {/* GALLERY with Load More */}
         {allGalleryImages.length > 0 && (
           <FadeIn>
             <div className="mb-24">
               <span className="text-[11px] uppercase tracking-widest font-semibold text-zinc-500 block mb-4">Visual Gallery</span>
               <h2 className="text-3xl font-bold text-white mb-12">See It in Action</h2>
               <div className="grid gap-4 md:grid-cols-2">
-                {allGalleryImages.map((img, idx) => (
+                {visibleGallery.map((img, idx) => (
                   <motion.div
                     key={idx}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: idx * 0.04, duration: 0.5 }}
                     viewport={{ once: true }}
-                    className={`relative overflow-hidden rounded-xl border border-white/[0.04] bg-[#0E0E10] ${
+                    onClick={() => openLightbox(project.mockupImages.length + idx)}
+                    className={`relative overflow-hidden rounded-xl border border-white/[0.04] bg-[#0E0E10] cursor-pointer group ${
                       idx === 0 ? 'md:col-span-2 aspect-[21/9]' : 'aspect-[3/2]'
                     }`}
                   >
@@ -212,19 +232,33 @@ export default function ProjectDetailClient({ project, similarProjects }: Props)
                       src={img}
                       alt={`${project.title} — View ${idx + 1}`}
                       fill
-                      className="object-cover hover:scale-[1.02] transition-transform duration-700"
+                      className="object-contain group-hover:scale-[1.02] transition-transform duration-700"
                       sizes={idx === 0 ? '100vw' : '50vw'}
                     />
+                    {/* Hover overlay */}
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                      <span className="opacity-0 group-hover:opacity-100 transition-opacity text-white text-sm font-medium bg-black/40 backdrop-blur-sm px-4 py-2 rounded-full">
+                        View Full Size
+                      </span>
+                    </div>
                   </motion.div>
                 ))}
               </div>
+              {hasMoreImages && !showAllGallery && (
+                <div className="mt-8 text-center">
+                  <button
+                    onClick={() => setShowAllGallery(true)}
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/[0.08] bg-white/[0.03] text-sm font-medium text-zinc-300 hover:text-white hover:bg-white/[0.06] transition-colors"
+                  >
+                    Load More ({allGalleryImages.length - INITIAL_GALLERY_COUNT} remaining)
+                  </button>
+                </div>
+              )}
             </div>
           </FadeIn>
         )}
 
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        {/* SIMILAR PROJECTS                                              */}
-        {/* ═══════════════════════════════════════════════════════════════ */}
+        {/* SIMILAR PROJECTS */}
         {similarProjects.length > 0 && (
           <FadeIn>
             <div className="mb-24">
@@ -260,16 +294,14 @@ export default function ProjectDetailClient({ project, similarProjects }: Props)
           </FadeIn>
         )}
 
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        {/* BOTTOM CTA                                                    */}
-        {/* ═══════════════════════════════════════════════════════════════ */}
+        {/* BOTTOM CTA */}
         <FadeIn>
           <div className="mb-24 text-center py-20 border-t border-b border-white/[0.04]">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tighter text-white mb-4">
               Let&apos;s build your next platform.
             </h2>
             <p className="text-lg text-zinc-400 mb-8 max-w-lg mx-auto">
-              Every product in our studio started as a conversation. Tell us what you need, and we will show you what is possible.
+              Every product in our studio started as a conversation. Tell us what you need, and we&apos;ll show you what&apos;s possible.
             </p>
             <Link href="/contact">
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
@@ -281,33 +313,41 @@ export default function ProjectDetailClient({ project, similarProjects }: Props)
           </div>
         </FadeIn>
 
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        {/* TOGGLEABLE TECHNICAL SECTION — Footer                         */}
-        {/* ═══════════════════════════════════════════════════════════════ */}
-        <div className="mb-16">
-          <button
-            onClick={() => setShowTechnical(!showTechnical)}
-            className="w-full flex items-center justify-between p-6 rounded-xl border border-white/[0.06] bg-[#141417] hover:bg-[#1A1A1C] transition-colors"
-          >
-            <div className="flex items-center gap-3">
-              <span className="text-white font-semibold">Technical Architecture & Engineering Details</span>
-              <span className="text-[11px] text-zinc-500 bg-white/[0.04] px-2 py-0.5 rounded">For Engineers</span>
-            </div>
-            {showTechnical ? <ChevronUp className="h-5 w-5 text-zinc-400" /> : <ChevronDown className="h-5 w-5 text-zinc-400" />}
-          </button>
-
-          <AnimatePresence>
-            {showTechnical && (
+        {/* ARCHITECTURE MODAL */}
+        <AnimatePresence>
+          {showTechnical && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-12">
               <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.4, ease: 'easeInOut' }}
-                className="overflow-hidden"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setShowTechnical(false)}
+                className="absolute inset-0 bg-black/80 backdrop-blur-md"
+              />
+              
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                className="relative w-full max-w-[1200px] max-h-[90vh] bg-[#0A0A0C] border border-white/[0.08] rounded-2xl shadow-2xl overflow-hidden flex flex-col"
               >
-                <div className="pt-8 flex flex-col gap-12">
+                <div className="flex items-center justify-between p-6 md:p-8 border-b border-white/[0.04] bg-[#0A0A0C] z-10 shrink-0">
+                  <div>
+                    <h2 className="text-2xl font-bold text-white mb-2">Technical Architecture</h2>
+                    <p className="text-sm text-zinc-400">Engineering details for {project.title}</p>
+                  </div>
+                  <button 
+                    onClick={() => setShowTechnical(false)}
+                    className="p-3 rounded-full bg-white/[0.04] hover:bg-white/[0.1] text-zinc-400 hover:text-white transition-colors"
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
+                </div>
 
-                  {/* System Architecture */}
+                <div className="flex-1 overflow-y-auto p-6 md:p-12">
+                  <div className="flex flex-col gap-12">
+
                   <GlassCard className="p-8">
                     <h3 className="text-lg font-semibold text-white mb-6">System Architecture</h3>
                     <div className="mb-6">
@@ -332,10 +372,9 @@ export default function ProjectDetailClient({ project, similarProjects }: Props)
                     </div>
                   </GlassCard>
 
-                  {/* Bounded Contexts & Schema */}
                   <div className="grid lg:grid-cols-2 gap-8">
                     <div>
-                      <h3 className="text-lg font-semibold text-white mb-6">Bounded Contexts (DDD)</h3>
+                      <h3 className="text-lg font-semibold text-white mb-6">Bounded Contexts</h3>
                       <div className="flex flex-col gap-4">
                         {project.boundedContexts.map((ctx: BoundedContext) => (
                           <div key={ctx.name} className="p-5 rounded-xl border border-white/[0.06] bg-[#141417]">
@@ -373,7 +412,6 @@ export default function ProjectDetailClient({ project, similarProjects }: Props)
                     </div>
                   </div>
 
-                  {/* Tech Stack */}
                   <div>
                     <h3 className="text-lg font-semibold text-white mb-6">Technology Stack</h3>
                     <div className="grid sm:grid-cols-2 gap-6">
@@ -396,7 +434,6 @@ export default function ProjectDetailClient({ project, similarProjects }: Props)
                     </div>
                   </div>
 
-                  {/* ADRs */}
                   <div>
                     <h3 className="text-lg font-semibold text-white mb-6">Architecture Decision Records</h3>
                     <div className="flex flex-col gap-3">
@@ -421,13 +458,24 @@ export default function ProjectDetailClient({ project, similarProjects }: Props)
                     </div>
                   </div>
 
+                  </div>
                 </div>
               </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+            </div>
+          )}
+        </AnimatePresence>
 
       </div>
+
+      {/* Lightbox */}
+      <ImageLightbox
+        images={[...project.mockupImages, ...allGalleryImages]}
+        currentIndex={lightboxIndex}
+        isOpen={lightboxOpen}
+        onClose={() => setLightboxOpen(false)}
+        onNavigate={setLightboxIndex}
+        title={project.title}
+      />
     </div>
   );
 }

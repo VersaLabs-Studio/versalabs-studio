@@ -1,7 +1,7 @@
 # VersaLabs Studio - Company Narrative
 
 ## 1. Identity & Positioning
-**VersaLabs** represents an elite product studio led by an AI Software Engineer & Systems Architect. We operate at the intersection of enterprise system architecture and artificial intelligence, building:
+**VersaLabs** represents an elite product studio led by an AI Software Engineer & Systems Architect Kidus Abdula (mysekf). We operate at the intersection of enterprise system architecture and artificial intelligence, building:
 - Autonomous workflows driving operational velocity
 - Continuous integration and continuous delivery (CI/CD) pipelines
 - Highly scalable, stack-agnostic backends relying on strict architectural discipline

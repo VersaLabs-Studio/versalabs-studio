@@ -1,120 +1,227 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
 
-const fadeUpVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } 
-  }
+const SPRING = { stiffness: 300, damping: 30 };
+
+const heroVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.12, delayChildren: 0.2 } },
 };
 
+const slideUp = {
+  hidden: { opacity: 0, y: 60, filter: 'blur(8px)' },
+  visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 1, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } },
+};
+
+const slideInLeft = {
+  hidden: { opacity: 0, x: -40 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } },
+};
+
+const slideInRight = {
+  hidden: { opacity: 0, x: 40 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } },
+};
+
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } },
+};
+
+function CountUp({ target, suffix = '' }: { target: number; suffix?: string }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true;
+          const duration = 1500;
+          const startTime = performance.now();
+          const animate = (currentTime: number) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            setCount(Math.floor(eased * target));
+            if (progress < 1) requestAnimationFrame(animate);
+          };
+          requestAnimationFrame(animate);
+        }
+      },
+      { threshold: 0.5 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [target]);
+
+  return <div ref={ref}>{count}{suffix}</div>;
+}
+
 export default function Hero() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end start'],
+  });
+
+  const bgY = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const glowScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.5]);
+  const glowOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
+  const contentY = useTransform(scrollYProgress, [0, 0.4], [0, -60]);
+
   return (
-    <section className="relative flex min-h-[100vh] flex-col items-center justify-center px-6 pt-24 text-center overflow-hidden">
+    <section ref={containerRef} className="relative flex min-h-[100vh] flex-col items-center justify-center px-6 pt-24 text-center overflow-hidden">
       
-      {/* Background Ambient Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-white/[0.04] blur-[120px] rounded-full pointer-events-none" />
-
+      {/* Parallax Background Glow */}
       <motion.div 
-        initial="hidden"
-        animate="visible"
-        transition={{ staggerChildren: 0.1 }}
-        className="relative z-10 flex flex-col items-center w-full max-w-5xl"
+        style={{ y: bgY, scale: glowScale, opacity: glowOpacity }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] pointer-events-none"
       >
-        {/* Announcer Badge */}
-        <motion.div variants={fadeUpVariants} className="mb-8">
-          <div className="inline-flex items-center gap-2.5 rounded-full border border-white/[0.12] bg-[#ffffff05] backdrop-blur-md px-4 py-1.5 text-[13px] font-medium text-zinc-300 shadow-2xl transition-colors hover:bg-[#ffffff08]">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/40" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
-            </span>
-            <span>AI-Driven Digital Infrastructure & Enterprise Systems</span>
-          </div>
-        </motion.div>
-
-        {/* Huge Heading */}
-        <motion.h1 
-          variants={fadeUpVariants} 
-          className="text-[42px] leading-[1.05] font-semibold tracking-tighter text-white sm:text-6xl md:text-7xl lg:text-[5.5rem]"
-        >
-          Engineering Autonomous
-          <br />
-          <span className="bg-gradient-to-b from-white to-white/40 bg-clip-text text-transparent">
-            Enterprise Systems
-          </span>
-          <br />
-          & Digital Architecture
-        </motion.h1>
-
-        {/* Description */}
-        <motion.p 
-          variants={fadeUpVariants} 
-          className="mx-auto mt-6 max-w-2xl text-[17px] leading-relaxed text-zinc-400"
-        >
-          VersaLabs is an elite product studio specializing in AI-first architecture, agentic workflows, and Domain-Driven Design. We engineer mission-critical autonomous platforms for visionaries and global operational leaders.
-        </motion.p>
-
-        {/* Action Buttons */}
-        <motion.div variants={fadeUpVariants} className="mt-10 flex flex-wrap items-center justify-center gap-4">
-          <Link href="/studio">
-            <motion.button
-              whileHover={{ scale: 1.02, backgroundColor: "rgba(255,255,255,0.9)" }}
-              whileTap={{ scale: 0.98 }}
-              className="flex h-11 items-center gap-2 rounded-full bg-white px-6 text-[14px] font-semibold text-black transition-colors"
-            >
-              Explore The Studio
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </motion.button>
-          </Link>
-          <Link href="/contact">
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="flex h-11 items-center rounded-full border border-white/[0.1] bg-white/[0.03] backdrop-blur-md px-6 text-[14px] font-medium text-white transition-colors hover:bg-white/[0.08]"
-            >
-              Initialize B2B Contract
-            </motion.button>
-          </Link>
-        </motion.div>
-
-        {/* Glassmorphic Stats Grid */}
-        <motion.div 
-          variants={fadeUpVariants} 
-          className="mt-24 grid w-full max-w-4xl grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/[0.08] overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0A0A0C]/40 backdrop-blur-2xl shadow-[0_0_40px_rgba(0,0,0,0.3)]"
-        >
-          {[
-            { val: "12+", label: "Enterprise Architectures" },
-            { val: "100%", label: "Schema-First & DDD Focus" },
-            { val: "Native", label: "AI & MCP Integrations" },
-          ].map((stat, i) => (
-            <div key={i} className="group flex flex-col items-center justify-center p-8 bg-gradient-to-b from-white/[0.04] to-transparent hover:from-white/[0.06] transition-all duration-500">
-              <div className="text-[40px] font-semibold tracking-tighter text-white drop-shadow-md mb-2 group-hover:scale-105 transition-transform duration-500">
-                {stat.val}
-              </div>
-              <div className="text-[12px] font-medium text-zinc-400 tracking-wider uppercase">
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </motion.div>
+        <div className="w-full h-full bg-white/[0.03] blur-[140px] rounded-full" />
       </motion.div>
 
-      {/* Down Arrow / Scroll Indicator */}
+      {/* Floating Geometric Accents */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 1 }}
+        transition={{ delay: 1.5, duration: 2 }}
+        className="absolute inset-0 pointer-events-none overflow-hidden"
+      >
+        <motion.div
+          animate={{ y: [0, -10, 0], rotate: [0, 5, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' as const }}
+          className="absolute top-[20%] left-[8%] w-20 h-20 border border-white/[0.04] rounded-lg rotate-12"
+        />
+        <motion.div
+          animate={{ y: [0, 8, 0], rotate: [0, -3, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' as const, delay: 1 }}
+          className="absolute top-[30%] right-[10%] w-16 h-16 border border-white/[0.03] rounded-full"
+        />
+        <motion.div
+          animate={{ y: [0, -6, 0] }}
+          transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' as const, delay: 2 }}
+          className="absolute bottom-[25%] left-[15%] w-12 h-12 border border-white/[0.04] rotate-45"
+        />
+        <motion.div
+          animate={{ y: [0, 12, 0], rotate: [0, 8, 0] }}
+          transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' as const, delay: 0.5 }}
+          className="absolute bottom-[30%] right-[12%] w-24 h-24 border border-white/[0.03] rounded-2xl -rotate-6"
+        />
+      </motion.div>
+
+      <motion.div 
+        style={{ opacity: contentOpacity, y: contentY }}
+        className="relative z-10 flex flex-col items-center w-full max-w-5xl"
+      >
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={heroVariants}
+          className="flex flex-col items-center w-full"
+        >
+          {/* Announcer Badge */}
+          <motion.div variants={slideUp} className="mb-8">
+            <motion.div 
+              whileHover={{ scale: 1.03, borderColor: 'rgba(255,255,255,0.2)' }}
+              transition={SPRING}
+              className="inline-flex items-center gap-2.5 rounded-full border border-white/[0.12] bg-[#ffffff05] backdrop-blur-md px-4 py-1.5 text-[13px] font-medium text-zinc-300 shadow-2xl"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/40" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
+              </span>
+              <span>Smart Software for Growing Businesses</span>
+            </motion.div>
+          </motion.div>
+
+          {/* Huge Heading — staggered word reveal */}
+          <motion.h1 variants={slideUp} className="text-[42px] leading-[1.05] font-semibold tracking-tighter text-white sm:text-6xl md:text-7xl lg:text-[5.5rem]">
+            We Build Smart Systems
+          </motion.h1>
+          <motion.h1 variants={slideUp} className="text-[42px] leading-[1.05] font-semibold tracking-tighter sm:text-6xl md:text-7xl lg:text-[5.5rem] bg-gradient-to-b from-white to-white/40 bg-clip-text text-transparent">
+            That Power Your Business
+          </motion.h1>
+
+          {/* Description — slides in from left */}
+          <motion.p variants={slideInLeft} className="mx-auto mt-6 max-w-2xl text-[17px] leading-relaxed text-zinc-400">
+            VersaLabs Studio is a product studio that designs, builds, and deploys enterprise platforms — from business management systems and online stores to AI-powered security tools. We turn your ideas into software that works.
+          </motion.p>
+
+          {/* Action Buttons — stagger */}
+          <motion.div variants={slideInRight} className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <Link href="/studio">
+              <motion.button
+                whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.9)" }}
+                whileTap={{ scale: 0.97 }}
+                transition={SPRING}
+                className="flex h-11 items-center gap-2 rounded-full bg-white px-6 text-[14px] font-semibold text-black transition-colors"
+              >
+                See Our Work
+                <motion.svg 
+                  animate={{ x: [0, 4, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' as const }}
+                  width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                </motion.svg>
+              </motion.button>
+            </Link>
+            <Link href="/contact">
+              <motion.button
+                whileHover={{ scale: 1.05, borderColor: 'rgba(255,255,255,0.2)' }}
+                whileTap={{ scale: 0.97 }}
+                transition={SPRING}
+                className="flex h-11 items-center rounded-full border border-white/[0.1] bg-white/[0.03] backdrop-blur-md px-6 text-[14px] font-medium text-white transition-colors hover:bg-white/[0.08]"
+              >
+                Start a Project
+              </motion.button>
+            </Link>
+          </motion.div>
+
+          {/* Glassmorphic Stats Grid — scale in */}
+          <motion.div 
+            variants={scaleIn}
+            className="mt-24 grid w-full max-w-4xl grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/[0.08] overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0A0A0C]/40 backdrop-blur-2xl shadow-[0_0_40px_rgba(0,0,0,0.3)]"
+          >
+            {[
+              { val: 15, suffix: '+', label: 'Products Shipped' },
+              { val: 8, suffix: '', label: 'Live Platforms' },
+              { val: 100, suffix: '%', label: 'AI-Powered Development' },
+            ].map((stat, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ backgroundColor: 'rgba(255,255,255,0.04)' }}
+                transition={{ duration: 0.3 }}
+                className="group flex flex-col items-center justify-center p-8 bg-gradient-to-b from-white/[0.03] to-transparent transition-all duration-500"
+              >
+                <div className="text-[40px] font-semibold tracking-tighter text-white drop-shadow-md mb-2 group-hover:scale-110 transition-transform duration-500">
+                  <CountUp target={stat.val} suffix={stat.suffix} />
+                </div>
+                <div className="text-[12px] font-medium text-zinc-400 tracking-wider uppercase">
+                  {stat.label}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+      </motion.div>
+
+      {/* Scroll Indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 1 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
         <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' as const }}
           className="flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.02] text-zinc-500 backdrop-blur-md transition-colors hover:text-white"
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

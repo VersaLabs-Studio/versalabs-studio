@@ -23,8 +23,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "VersaLabs Studio | Enterprise Systems & AI Workflows",
-  description: "VersaLabs is an elite product studio specializing in LLM orchestration, Schema-First design, and Next.js infrastructure. We deliver enterprise-grade systems for global operational leaders.",
+  title: "VersaLabs Studio | Custom Software & Business Platforms",
+  description: "VersaLabs Studio designs and builds enterprise software — ERP systems, AI platforms, e-commerce stores, and custom business tools. Based in Addis Ababa, building for the world.",
 };
 
 export default function RootLayout({

@@ -12,10 +12,10 @@ interface StudioClientProps {
   projects: StudioProjectData[];
 }
 
-const FEATURED_SLUGS = ['threatmatrix-ai', 'obsidian-erp-v3.0'];
+const FEATURED_SLUGS = ['obsidian-erp-v3.0', 'threatmatrix-ai'];
 const FEATURED_HERO_IMAGES: Record<string, string> = {
-  'threatmatrix-ai': '/ThreatMatrix AI/Mockups/threatmatrix-ai-1.png',
   'obsidian-erp-v3.0': '/Obsidian ERP/Mockups/New folder/obsidian-erp-2 (2).png',
+  'threatmatrix-ai': '/ThreatMatrix AI/Mockups/threatmatrix-ai-1.png',
 };
 
 export default function StudioClient({ projects }: StudioClientProps) {
@@ -38,26 +38,59 @@ export default function StudioClient({ projects }: StudioClientProps) {
     <div className="min-h-screen">
 
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      {/* HERO SECTION — Featured Products (Apple-style full-width rows)    */}
+      {/* HERO SECTION — Featured Products                                  */}
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      <section className="px-6 pt-32 pb-24 bg-[#0A0A0C]">
-        <div className="mx-auto max-w-7xl">
-          <FadeIn>
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-white mb-4">
-              VersaLabs Studio.
-            </h1>
-            <p className="text-xl text-zinc-500 max-w-2xl mb-20">
-              Enterprise software, built to last. Explore the platforms powering businesses across security, commerce, finance, and operations.
-            </p>
-          </FadeIn>
+      <section className="relative px-6 pt-40 pb-24 bg-[#0A0A0C] overflow-hidden">
+        {/* Background */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+          <div className="absolute -top-[20%] -right-[10%] w-[60%] h-[60%] rounded-full bg-indigo-500/5 blur-[120px]" />
+          <div className="absolute top-[20%] -left-[10%] w-[40%] h-[40%] rounded-full bg-emerald-500/5 blur-[100px]" />
+        </div>
+
+        <div className="relative mx-auto max-w-[1400px]">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-24">
+            <div className="lg:col-span-8">
+              <FadeIn>
+                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/[0.03] border border-white/[0.06] mb-8">
+                  <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="text-xs font-semibold tracking-widest text-zinc-300 uppercase">Product Portfolio</span>
+                </div>
+                <h1 className="text-6xl md:text-[80px] leading-[1.05] font-bold tracking-tighter text-white mb-6">
+                  Our Best Work.
+                </h1>
+                <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl leading-relaxed">
+                  Enterprise platforms, online stores, AI tools, and custom software — built from scratch and deployed live. Browse everything we&apos;ve shipped.
+                </p>
+              </FadeIn>
+            </div>
+            
+            {/* Stats */}
+            <div className="lg:col-span-4 flex flex-col gap-4 justify-end">
+              <FadeIn delay={0.2}>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/[0.04] backdrop-blur-sm">
+                    <div className="text-3xl font-bold text-white mb-1">15+</div>
+                    <div className="text-sm text-zinc-500">Products Shipped</div>
+                  </div>
+                  <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/[0.04] backdrop-blur-sm">
+                    <div className="text-3xl font-bold text-white mb-1">100%</div>
+                    <div className="text-sm text-zinc-500">Custom Built</div>
+                  </div>
+                  <div className="col-span-2 p-6 rounded-2xl bg-gradient-to-br from-white/[0.04] to-transparent border border-white/[0.04] backdrop-blur-sm relative overflow-hidden">
+                    <div className="text-xl font-bold text-white mb-1">Production-Ready</div>
+                    <div className="text-sm text-zinc-500">Deployed and serving real users every day.</div>
+                  </div>
+                </div>
+              </FadeIn>
+            </div>
+          </div>
 
           <div className="flex flex-col gap-16">
             {featuredProjects.map((project, idx) => (
               <FadeIn key={project.slug} delay={idx * 0.15}>
                 <Link href={`/projects/${project.slug}`} className="block group">
                   <div className="relative overflow-hidden rounded-2xl bg-[#111113] border border-white/[0.06]">
-                    {/* Large Hero Image */}
-                    <div className="relative w-full aspect-[21/9] overflow-hidden">
+                    <div className="relative w-full aspect-[16/9] overflow-hidden">
                       <motion.div
                         whileHover={{ scale: 1.02 }}
                         transition={{ type: "spring", stiffness: 200, damping: 30 }}
@@ -75,7 +108,6 @@ export default function StudioClient({ projects }: StudioClientProps) {
                       </motion.div>
                     </div>
 
-                    {/* Product Info Bar */}
                     <div className="p-8 md:p-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
                       <div>
                         <div className="flex items-center gap-3 mb-4">
@@ -85,6 +117,15 @@ export default function StudioClient({ projects }: StudioClientProps) {
                           <span className="text-[11px] font-medium text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-sm">
                             {project.status}
                           </span>
+                          {project.productType && (
+                            <span className={`text-[11px] font-medium px-2.5 py-1 rounded-sm ${
+                              project.productType === 'saas' 
+                                ? 'text-blue-400 bg-blue-500/10 border border-blue-500/20'
+                                : 'text-violet-400 bg-violet-500/10 border border-violet-500/20'
+                            }`}>
+                              {project.productType === 'saas' ? 'Deploy Ready' : 'Custom Built'}
+                            </span>
+                          )}
                         </div>
                         <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-white mb-3">
                           {project.title}
@@ -109,18 +150,17 @@ export default function StudioClient({ projects }: StudioClientProps) {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════ */}
-      {/* FULL CATALOG — 2-Column Grid with Large Thumbnails               */}
+      {/* FULL CATALOG                                                      */}
       {/* ═══════════════════════════════════════════════════════════════════ */}
       <section className="px-6 py-24 bg-[#0A0A0C] border-t border-white/[0.04]">
-        <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-[1400px]">
 
-          {/* Section Header */}
           <FadeIn>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tighter text-white mb-4">
               Full Product Catalog
             </h2>
             <p className="text-[16px] text-zinc-500 mb-12 max-w-xl">
-              Every platform we have shipped — from enterprise SaaS to mobile fintech. Filter by domain to find what matters to your business.
+              Every platform we&apos;ve shipped — from enterprise systems to mobile apps. Filter by category to find what you need.
             </p>
           </FadeIn>
 
@@ -137,7 +177,7 @@ export default function StudioClient({ projects }: StudioClientProps) {
                       : 'bg-[#1C1C1F] text-zinc-400 hover:text-white border border-white/[0.06]'
                   }`}
                 >
-                  {cat === 'all' ? 'All Domains' : cat}
+                  {cat === 'all' ? 'All Products' : cat}
                 </button>
               ))}
             </div>
@@ -162,7 +202,6 @@ export default function StudioClient({ projects }: StudioClientProps) {
                   <Link href={`/projects/${project.slug}`} className="block h-full group">
                     <GlassCard className="h-full flex flex-col overflow-hidden transition-colors hover:border-white/[0.12]">
                       
-                      {/* Thumbnail Image — Large 3:2 Display */}
                       {project.thumbnail && (
                         <div className="relative w-full aspect-[3/2] overflow-hidden bg-[#0E0E10]">
                           <motion.div
@@ -215,6 +254,17 @@ export default function StudioClient({ projects }: StudioClientProps) {
                               <span key={tag} className="text-xs text-zinc-500">#{tag}</span>
                             ))}
                           </div>
+                          {project.productType && (
+                            <span className={`text-[10px] font-medium px-2 py-0.5 rounded-sm ${
+                              project.productType === 'saas' 
+                                ? 'text-emerald-400 bg-emerald-500/10 border border-emerald-500/20'
+                                : project.productType === 'internal' 
+                                  ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/20'
+                                  : 'text-violet-400 bg-violet-500/10 border border-violet-500/20'
+                            }`}>
+                              {project.productType === 'saas' ? 'SaaS' : project.productType === 'internal' ? 'Internal' : 'Custom'}
+                            </span>
+                          )}
                         </div>
                       </div>
                     </GlassCard>
@@ -232,18 +282,16 @@ export default function StudioClient({ projects }: StudioClientProps) {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════ */}
-      {/* CTA SECTION                                                       */}
-      {/* ═══════════════════════════════════════════════════════════════════ */}
+      {/* CTA */}
       <section className="px-6 py-32 bg-[#0A0A0C] border-t border-white/[0.04] relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-white/[0.02] blur-[100px] rounded-full pointer-events-none" />
         <div className="mx-auto max-w-3xl text-center relative z-10">
           <FadeIn>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-white mb-6">
-              Ready to build something extraordinary?
+              Ready to build something great?
             </h2>
             <p className="text-lg text-zinc-400 mb-10 max-w-xl mx-auto">
-              Whether you need a custom platform built from scratch or want to deploy one of our existing products, we are ready to deliver.
+              Whether you need a custom platform built from scratch or want to deploy one of our existing products, we&apos;re ready to help.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/contact">

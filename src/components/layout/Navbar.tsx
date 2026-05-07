@@ -28,7 +28,7 @@ export default function Navbar() {
         className="fixed top-0 left-0 right-0 z-50 bg-[#0D0D0F]/90 backdrop-blur-2xl border-b border-white/[0.05]"
       >
         <div className="mx-auto max-w-7xl flex h-[72px] items-center justify-between px-6 lg:px-8">
-          {/* Logo Container on Left */}
+          {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
             <img 
               src="/versalabs-logo-light.png" 
@@ -40,7 +40,7 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Nav Links and Actions on Right */}
+          {/* Nav Links and Actions */}
           <div className="flex items-center gap-5 lg:gap-8">
             <div className="hidden lg:flex items-center gap-1">
               {navLinks.map(({ href, label }) => {
@@ -68,13 +68,15 @@ export default function Navbar() {
 
             <div className="hidden lg:block h-4 w-[1px] bg-white/[0.1]"></div>
 
-            <motion.button
-              whileHover={{ scale: 1.02, backgroundColor: "rgba(255,255,255,0.9)" }}
-              whileTap={{ scale: 0.98 }}
-              className="hidden sm:flex items-center justify-center h-9 px-5 rounded-full bg-white text-[13px] font-bold text-black transition-colors"
-            >
-              Get Started
-            </motion.button>
+            <Link href="/contact">
+              <motion.button
+                whileHover={{ scale: 1.02, backgroundColor: "rgba(255,255,255,0.9)" }}
+                whileTap={{ scale: 0.98 }}
+                className="hidden sm:flex items-center justify-center h-9 px-5 rounded-full bg-white text-[13px] font-bold text-black transition-colors"
+              >
+                Get Started
+              </motion.button>
+            </Link>
 
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -120,12 +122,14 @@ export default function Navbar() {
             );
           })}
           <div className="mt-3 pt-3 border-t border-white/[0.06]">
-            <motion.button
-              whileTap={{ scale: 0.98 }}
-              className="w-full flex items-center justify-center gap-2 h-11 px-5 rounded-lg bg-white text-[14px] font-semibold text-black hover:bg-zinc-100 transition-colors"
-            >
-              Get Started
-            </motion.button>
+            <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
+              <motion.button
+                whileTap={{ scale: 0.98 }}
+                className="w-full flex items-center justify-center gap-2 h-11 px-5 rounded-lg bg-white text-[14px] font-semibold text-black hover:bg-zinc-100 transition-colors"
+              >
+                Get Started
+              </motion.button>
+            </Link>
           </div>
         </div>
       </motion.div>
