@@ -142,21 +142,21 @@ export default function Hero() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/40" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
               </span>
-              <span>Smart Software for Growing Businesses</span>
+               <span>Custom Software for Growing Businesses</span>
             </motion.div>
           </motion.div>
 
           {/* Huge Heading — staggered word reveal */}
           <motion.h1 variants={slideUp} className="text-4xl leading-[1.1] font-semibold tracking-tighter text-white sm:text-6xl md:text-7xl lg:text-[5.5rem]">
-            We Build Smart Systems
+            We Build Business Systems
           </motion.h1>
           <motion.h1 variants={slideUp} className="text-4xl leading-[1.1] font-semibold tracking-tighter sm:text-6xl md:text-7xl lg:text-[5.5rem] bg-gradient-to-b from-white to-white/40 bg-clip-text text-transparent">
-            That Power Your Business
+            That Work From Day One
           </motion.h1>
 
           {/* Description — slides in from left */}
           <motion.p variants={slideInLeft} className="mx-auto mt-6 max-w-2xl text-[17px] leading-relaxed text-zinc-400">
-            VersaLabs Studio is a product studio that designs, builds, and deploys enterprise platforms — from business management systems and online stores to AI-powered security tools. We turn your ideas into software that works.
+            VersaLabs Studio designs and ships custom platforms, online stores, dashboards, and AI tools that replace manual work, connect your operations, and help your team move faster.
           </motion.p>
 
           {/* Action Buttons — stagger */}
