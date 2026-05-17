@@ -142,21 +142,21 @@ export default function Hero() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/40" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
               </span>
-               <span>Custom Software for Growing Businesses</span>
+               <span>Design, Build, Launch</span>
             </motion.div>
           </motion.div>
 
           {/* Huge Heading — staggered word reveal */}
           <motion.h1 variants={slideUp} className="text-4xl leading-[1.1] font-semibold tracking-tighter text-white sm:text-6xl md:text-7xl lg:text-[5.5rem]">
-            We Build Business Systems
+            From Idea
           </motion.h1>
           <motion.h1 variants={slideUp} className="text-4xl leading-[1.1] font-semibold tracking-tighter sm:text-6xl md:text-7xl lg:text-[5.5rem] bg-gradient-to-b from-white to-white/40 bg-clip-text text-transparent">
-            That Work From Day One
+            To Working Platform
           </motion.h1>
 
           {/* Description — slides in from left */}
           <motion.p variants={slideInLeft} className="mx-auto mt-6 max-w-2xl text-[17px] leading-relaxed text-zinc-400">
-            VersaLabs Studio designs and ships custom platforms, online stores, dashboards, and AI tools that replace manual work, connect your operations, and help your team move faster.
+            Bring us the business problem. We shape the product, design the experience, build the system, and help launch software your team can actually use.
           </motion.p>
 
           {/* Action Buttons — stagger */}
@@ -168,7 +168,7 @@ export default function Hero() {
                 transition={SPRING}
                 className="flex h-11 items-center gap-2 rounded-full bg-white px-6 text-[14px] font-semibold text-black transition-colors"
               >
-                See Our Work
+                See What We Build
                 <motion.svg 
                   animate={{ x: [0, 4, 0] }}
                   transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' as const }}

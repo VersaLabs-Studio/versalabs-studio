@@ -93,7 +93,7 @@ export default function ProjectDetailClient({ project, similarProjects }: Props)
 
           <FadeIn delay={0.3}>
             <div className="flex flex-wrap items-center gap-4">
-              {project.liveUrl && (
+              {project.liveUrl && project.slug !== 'threatmatrix-ai' && (
                 <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full bg-white text-black px-6 py-3 text-sm font-semibold transition-all hover:bg-zinc-200 hover:scale-[1.02]">
                   View Live Platform
