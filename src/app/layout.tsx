@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Outfit, Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -39,6 +40,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
         <MotionConfigProvider>
           <Navbar />
+          <Analytics />
           <main className="flex-1">{children}</main>
           <Footer />
         </MotionConfigProvider>
