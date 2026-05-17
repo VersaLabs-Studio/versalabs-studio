@@ -148,10 +148,10 @@ export default function Hero() {
 
           {/* Huge Heading — staggered word reveal */}
           <motion.h1 variants={slideUp} className="text-4xl leading-[1.1] font-semibold tracking-tighter text-white sm:text-6xl md:text-7xl lg:text-[5.5rem]">
-            From Idea
+            From a Business Problem
           </motion.h1>
           <motion.h1 variants={slideUp} className="text-4xl leading-[1.1] font-semibold tracking-tighter sm:text-6xl md:text-7xl lg:text-[5.5rem] bg-gradient-to-b from-white to-white/40 bg-clip-text text-transparent">
-            To Working Platform
+            To a Working Platform
           </motion.h1>
 
           {/* Description — slides in from left */}
