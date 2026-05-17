@@ -7,7 +7,7 @@ export default function CallToAction() {
   return (
     <section className="px-6 py-32 border-t border-white/[0.04] relative overflow-hidden">
       {/* Animated gradient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-gradient-to-br from-violet-500/8 via-white/[0.03] to-indigo-500/8 blur-[120px] rounded-full pointer-events-none animate-glow-pulse" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vw] max-w-[700px] h-[400px] bg-gradient-to-br from-violet-500/8 via-white/[0.03] to-indigo-500/8 blur-[120px] rounded-full pointer-events-none animate-glow-pulse" />
 
       <div className="mx-auto max-w-3xl text-center relative z-10">
         <motion.div

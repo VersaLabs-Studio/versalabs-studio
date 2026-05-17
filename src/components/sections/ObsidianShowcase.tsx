@@ -30,7 +30,7 @@ export default function ObsidianShowcase() {
       className="relative w-full overflow-hidden bg-[#0A0A0C] py-12 md:py-20"
     >
       {/* Ambient Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] bg-gradient-to-br from-violet-500/10 via-indigo-500/8 to-purple-600/5 blur-[140px] rounded-full pointer-events-none animate-glow-pulse" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vw] max-w-[900px] h-[600px] bg-gradient-to-br from-violet-500/10 via-indigo-500/8 to-purple-600/5 blur-[140px] rounded-full pointer-events-none animate-glow-pulse" />
 
       <div className="mx-auto max-w-[1400px] px-6">
         {/* Section Label */}

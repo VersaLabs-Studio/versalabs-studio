@@ -87,9 +87,9 @@ export default function Hero() {
       {/* Parallax Background Glow */}
       <motion.div 
         style={{ y: hasMounted ? bgY : 0, scale: hasMounted ? glowScale : 1, opacity: hasMounted ? glowOpacity : 1 }}
-        className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none"
+        className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none overflow-hidden"
       >
-        <div className="w-full max-w-[900px] h-[600px] bg-white/[0.03] blur-[140px] rounded-full" />
+        <div className="w-[120vw] max-w-[900px] h-[600px] bg-white/[0.03] blur-[140px] rounded-full" />
       </motion.div>
 
       {/* Floating Geometric Accents */}
