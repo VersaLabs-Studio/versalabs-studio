@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import FooterCTA from '../ui/FooterCTA';
 
 const productLinks = [
   { label: 'Obsidian ERP', href: '/projects/obsidian-erp-v3.0' },
@@ -29,7 +30,12 @@ const legalLinks = [
   { label: 'Terms of Service', href: '#' },
 ];
 
-export default function Footer() {
+interface FooterProps {
+  showCTA?: boolean;
+  ctaProps?: React.ComponentProps<typeof FooterCTA>;
+}
+
+export default function Footer({ showCTA = false, ctaProps }: FooterProps = {}) {
   return (
     <footer className="border-t border-white/[0.04] bg-[#0A0A0C]">
       <div className="mx-auto max-w-7xl px-6 pt-16 pb-8">
@@ -101,6 +107,13 @@ export default function Footer() {
             </ul>
           </div>
         </div>
+
+        {/* Optional CTA Section */}
+        {showCTA && (
+          <div className="border-t border-white/[0.04] -mx-6">
+            <FooterCTA {...ctaProps} />
+          </div>
+        )}
 
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-white/[0.04]">

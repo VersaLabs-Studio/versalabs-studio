@@ -64,6 +64,12 @@ function CountUp({ target, suffix = '' }: { target: number; suffix?: string }) {
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end start'],
@@ -76,14 +82,14 @@ export default function Hero() {
   const contentY = useTransform(scrollYProgress, [0, 0.4], [0, -60]);
 
   return (
-    <section ref={containerRef} className="relative flex min-h-[100svh] flex-col items-center justify-center px-6 pt-24 text-center overflow-x-clip">
+    <section ref={containerRef} className="relative flex min-h-screen flex-col items-center justify-center px-6 pt-24 text-center overflow-hidden isolate" style={{ minHeight: '100svh' }}>
       
       {/* Parallax Background Glow */}
       <motion.div 
-        style={{ y: bgY, scale: glowScale, opacity: glowOpacity }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[900px] h-[600px] pointer-events-none"
+        style={{ y: hasMounted ? bgY : 0, scale: hasMounted ? glowScale : 1, opacity: hasMounted ? glowOpacity : 1 }}
+        className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none"
       >
-        <div className="w-full h-full bg-white/[0.03] blur-[140px] rounded-full" />
+        <div className="w-full max-w-[900px] h-[600px] bg-white/[0.03] blur-[140px] rounded-full" />
       </motion.div>
 
       {/* Floating Geometric Accents */}
@@ -91,7 +97,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 2 }}
-        className="absolute inset-0 pointer-events-none overflow-hidden"
+        className="absolute inset-0 z-0 pointer-events-none overflow-hidden"
       >
         <motion.div
           animate={{ y: [0, -10, 0], rotate: [0, 5, 0] }}
@@ -116,7 +122,7 @@ export default function Hero() {
       </motion.div>
 
       <motion.div 
-        style={{ y: contentY }}
+        style={{ y: hasMounted ? contentY : 0 }}
         className="relative z-10 flex flex-col items-center w-full max-w-5xl"
       >
         <motion.div
@@ -217,7 +223,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}

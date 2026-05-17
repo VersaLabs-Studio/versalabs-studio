@@ -4,7 +4,6 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { MotionConfigProvider } from "@/components/ui/motion";
-import { AnimatePresence } from "framer-motion";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -40,9 +39,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
         <MotionConfigProvider>
           <Navbar />
-          <AnimatePresence mode="wait">
-            <main className="flex-1">{children}</main>
-          </AnimatePresence>
+          <main className="flex-1">{children}</main>
           <Footer />
         </MotionConfigProvider>
         {process.env.NEXT_PUBLIC_GA_ID && (

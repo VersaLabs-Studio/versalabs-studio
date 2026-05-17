@@ -103,7 +103,8 @@ export default function Navbar() {
           opacity: isMenuOpen ? 1 : 0
         }}
         transition={{ duration: 0.2, ease: 'easeOut' }}
-        className="fixed top-[72px] left-0 right-0 z-40 lg:hidden overflow-hidden bg-[#0D0D0F]/95 backdrop-blur-2xl border-b border-white/[0.05]"
+        className="fixed top-[72px] left-0 right-0 z-[60] lg:hidden bg-[#0D0D0F]/95 backdrop-blur-2xl border-b border-white/[0.05]"
+        style={{ pointerEvents: isMenuOpen ? 'auto' : 'none', overflow: 'hidden' }}
       >
         <div className="px-6 py-4 flex flex-col gap-1">
           {navLinks.map(({ href, label }) => {
