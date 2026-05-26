@@ -235,7 +235,7 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-white text-sm">Quick Connect</h3>
                     <div className="flex flex-col gap-1 mt-1">
-                      <a href="https://t.me/versalabs" target="_blank" rel="noopener noreferrer" className="text-sm text-zinc-400 hover:text-white transition-colors">
+                      <a href="https://t.me/kidusabdula" target="_blank" rel="noopener noreferrer" className="text-sm text-zinc-400 hover:text-white transition-colors">
                         Telegram →
                       </a>
                       <a href="https://linkedin.com/company/versalabs-studio" target="_blank" rel="noopener noreferrer" className="text-sm text-zinc-400 hover:text-white transition-colors">
